@@ -1,0 +1,56 @@
+{
+  "name": "britinfotech_frontend",
+  "version": "1.0.0",
+  "description": "Frontend website for BritInfoTech",
+  "main": "app.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i src/css/index.css -o public/css/index.css",
+    "watch:css": "npx tailwindcss -i src/css/index.css -o public/css/index.css --watch",
+    "build:js": "babel src/js -d public/js",
+    "watch:js": "babel src/js -d public/js --watch",
+    "build": "npm run build:css && npm run build:js",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krsatvik1/britinfotech_frontend.git"
+  },
+  "keywords": [
+    "Frontend",
+    "html",
+    "css",
+    "js",
+    "ejs",
+    "express",
+    "node.js"
+  ],
+  "author": "PIRATA INTERACTIVES",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Krsatvik1/britinfotech_frontend/issues"
+  },
+  "homepage": "https://github.com/Krsatvik1/britinfotech_frontend#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "morgan": "^1.10.0",
+    "open": "^10.0.0",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
+    "nodemon": "^3.0.2",
+    "tailwindcss": "^3.3.7"
+  }
+}
