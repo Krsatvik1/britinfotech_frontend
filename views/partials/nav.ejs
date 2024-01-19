@@ -1,50 +1,128 @@
-<nav class="text-white font-dmsans">
-<!-- nav header - start -->
-  <div class="bg-deepBlue py-2.5 text-xs px-36 leading-0  flex justify-end">
-    <a href="tel:07812503239" class="flex font-medium gap-2 items-center pr-4 border-r-[0.0625rem] border-lightBlue"> <!-- pull from strapi -->
-        <div>
-            <img src="/images/icon-phone.svg" alt="phone icon" class="h-3">
-        </div>
-        <div>
-            <!-- pull from strapi --> 0781 250 3239
-        </div>
+<nav class="text-white font-dmsans relative z-20">
+  <!-- nav header - start -->
+  <div class="bg-deepBlue py-3 text-xs md:text-base px-6 md:px-24 leading-0 flex justify-end relative z-20">
+    <a
+      href="tel:07812503239"
+      class="flex font-medium gap-2 items-center pr-4 border-r-[0.0625rem] border-lightBlue"
+    >
+      <!-- pull from strapi -->
+      <div>
+        <img src="/images/icon-phone.svg" alt="phone icon" class="h-4" />
+      </div>
+      <div class="md:block hidden">
+        <!-- pull from strapi -->
+        0781 250 3239
+      </div>
     </a>
-    <a href="mailto:info@Britinfotech.co.uk" class="flex font-medium gap-2 items-center pl-4"> <!-- pull from strapi -->
-        <div>
-            <img src="/images/tabler-mail-filled.svg" alt="phone icon" class="h-3">
-        </div>
-        <div>
-            <!-- pull from strapi --> info@Britinfotech.co.uk
-        </div>
+    <a
+      href="mailto:info@Britinfotech.co.uk"
+      class="flex font-medium gap-2 items-center pl-4"
+    >
+      <!-- pull from strapi -->
+      <div>
+        <img
+          src="/images/tabler-mail-filled.svg"
+          alt="phone icon"
+          class="h-4"
+        />
+      </div>
+      <div class="">
+        <!-- pull from strapi -->
+        info@Britinfotech.co.uk
+      </div>
     </a>
   </div>
-<!-- nav header - end -->
-<!-- nav main - start -->
-<div class="bg-[linear-gradient(269deg,#00E5BC_-15.02%,_#0B669D_101.09%)] px-10 py-4 flex justify-between items-center">
-    <a href="/" class="flex items-center gap-[0.36rem]">
-        <div class="mb-0.5">
-            <img src="/images/brit-logo.svg" alt="logo" class="h-4">
-        </div>
-        <p class="font-crash font-medium text-[1.2rem] leading-none">
-            BritInfoTech
-        </p>
+  <!-- nav header - end -->
+  <!-- nav main - start -->
+  <div
+    class="bg-[linear-gradient(270deg,#00E5BC_-57.8%,#0B669D_91.38%)] md:bg-[linear-gradient(269deg,#00E5BC_-15.02%,_#0B669D_101.09%)] px-6 md:px-10 py-6 md:py-4 flex justify-between items-cente relative z-20"
+  >
+    <a href="/" class="flex items-center gap-[0.38rem] md:gap-[0.62rem]">
+      <div class="">
+        <img src="/images/brit-logo.svg" alt="logo" class="h-4 md:h-6" />
+      </div>
+      <p class="font-crash font-medium text-xl md:text-[2rem] leading-none">
+        BritInfoTech
+      </p>
     </a>
-    <ul class="flex items-center gap-12">
-        <li class="inline-block">
-            <a href="/" class="inline-block py-2.5 text-[0.875rem] font-medium hover:text-lightBlue">Home</a>
-        </li>
-        <li class="inline-block">
-            <a href="/about" class="inline-block py-2.5 text-[0.875rem] font-medium hover:text-lightBlue">About</a>
-        </li>
-        <li class="inline-block">
-            <a href="/services" class="inline-block py-2.5 text-[0.875rem] font-medium hover:text-lightBlue">Services</a>
-        </li>
-        <li class="inline-block">
-            <a href="/Insights" class="inline-block py-2.5 text-[0.875rem] font-medium hover:text-lightBlue">Insights</a>
-        </li>
+    <ul class="hidden md:flex items-center gap-14 text-xl">
+      <li class="inline-block basis-36">
+        <a href="/" class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Home</a
+        >
+      </li>
+      <li class="inline-block basis-36">
+        <a
+          href="/about"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >About</a
+        >
+      </li>
+      <li class="inline-block basis-36">
+        <a
+          href="/services"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Services</a
+        >
+      </li>
+      <li class="inline-block basis-36">
+        <a
+          href="/Insights"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Insights</a
+        >
+      </li>
     </ul>
-    <div>
-        <a href="/contact" class="inline-block rounded-full bg-darkBlue px-6 py-2 text-[0.875rem] font-normal hover:text-lightBlue">Contact Us</a>
+    <div class="text-xl hidden md:flex">
+      <a
+        href="/contact"
+        class="rounded-full bg-darkBlue flex justify-center items-center h-12 w-44 font-normal hover:text-lightBlue"
+        ><p>Contact Us</p></a
+      >
     </div>
-</div>
+    <div class="md:hidden">
+      <button onclick="showNav()" class="flex flex-col justify-between items-center gap-3 w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path d="M5 17H19M5 12H14.5M5 7H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </button>
+    </div>
+  </div>
+  <div id="navSide" class="md:hidden duration-200 transition-all -translate-y-full bg-[linear-gradient(270deg,#00E5BC_-57.8%,#0B669D_91.38%)] absolute w-screen font-crash px-6">
+    <ul class=" border-t-[1px] border-t-[#FFFFFF73]  pb-3 flex flex-col">
+      <li class="flex items-center basis-14">
+        <a href="/" class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Home</a
+        >
+      </li>
+      <li class="flex items-center basis-14">
+        <a
+          href="/about"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >About</a
+        >
+      </li>
+      <li class="flex items-center basis-14">
+        <a
+          href="/services"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Services</a
+        >
+      </li>
+      <li class="flex items-center basis-14">
+        <a
+          href="/Insights"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Insights</a
+        >
+      </li>
+      <li class="flex items-center basis-14">
+        <a
+          href="/Insights"
+          class="inline-block py-2.5 font-medium hover:text-lightBlue"
+          >Contact Us</a
+        >
+      </li>
+    </ul>
+  </div>
 </nav>
