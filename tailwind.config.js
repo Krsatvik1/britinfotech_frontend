@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        header: 'clamp(2rem, 4vw, 4rem)',
+        header: '3.5rem',
         headerMd: 'clamp(1rem, 5vw, 2rem)',
       },
       colors: {

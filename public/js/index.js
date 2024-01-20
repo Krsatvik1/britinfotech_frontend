@@ -20,25 +20,41 @@ if (layer1 && h1) {
   };
   setLayerHeight(); // Set initial height
   window.addEventListener("resize", setLayerHeight);
-  var words = h1.innerText.split(" ");
-  console.log(words);
-  h1.innerHTML = words.map(function (word) {
-    return '<span class="overflow-hidden inline-block -my-10 p-0"><span class="block">' + word + "</span></span>";
-  }).join(" ");
 }
-var observerClass = function observerClass(entries, className) {
-  var intersectionRatio = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0.25;
+var observerClass = function observerClass(entries, styleArray) {
+  var repeat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var scroll = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var options = {
     root: null,
     rootMargin: "0px",
-    threshold: intersectionRatio
+    trackVisibility: scroll,
+    delay: 100
   };
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        console.log(className);
-        entry.target.classList.add(className);
-        observer.unobserve(entry.target);
+        var style = entry.target.style;
+        var visibility = entry.intersectionRatio * 100;
+        styleArray.forEach(function (e) {
+          var mappedValue = (visibility - 0) / (100 - e.min) * (e.max - e.min) + e.min;
+          var newValue;
+          if (scroll && !e.direction) {
+            newValue = mappedValue;
+          } else if (scroll && e.direction) {
+            newValue = e.direction - mappedValue;
+          } else {
+            newValue = "'" + e.max + e.unit + "'";
+          }
+          if (e.matrix) {
+            style[e.styleName] = e.matrix + "(" + newValue + e.unit + ")";
+          } else {
+            style[e.styleName] = newValue;
+          }
+          console.log(e.matrix + "(" + newValue + ")");
+        });
+        if (entry.intersectionRatio >= 1 && !repeat) {
+          observer.unobserve(entry.target);
+        }
       }
     });
   }, options);
@@ -46,19 +62,42 @@ var observerClass = function observerClass(entries, className) {
 };
 if (document.querySelector(".card-animation-1")) {
   document.querySelectorAll(".card-animation-1 > a").forEach(function (card) {
-    observerClass(card, "animate", 0.5);
+    observerClass(card, [{
+      styleName: "transform",
+      max: 100,
+      min: 0,
+      unit: "%",
+      direction: 100,
+      matrix: "translateY"
+    }, {
+      styleName: "opacity",
+      max: 1,
+      min: 0,
+      unit: "",
+      direction: 0,
+      matrix: 0
+    }], true, true);
   });
 }
-if (document.querySelector(".choose-us")) {
-  observerClass(document.querySelector(".slider-1"), "slider-reveal", 0.5);
-  observerClass(document.querySelector(".slider-2"), "slider-reveal", 0.5);
-  observerClass(document.querySelector(".slider-3"), "slider-reveal", 0.5);
-  document.querySelectorAll(".choose-us > div").forEach(function (card) {
-    observerClass(card, "swiper-slide", 0.5);
-  });
-}
-if (document.querySelector(".shadow-animate")) {
-  observerClass(document.querySelector(".shadow-animate"), "md:shadow-[0px_10px_30px_0px_rgba(0,0,0,0.25)_inset]", 0.5);
-  observerClass(document.querySelector(".shadow-animate"), "shadow-[0px_3.035px_9.105px_0px_rgba(0,0,0,0.25)_inset]", 0.5);
-}
-if (document.querySelector(".blog")) {}
+// if (document.querySelector(".choose-us")) {
+//   observerClass(document.querySelector(".slider-1"), "slider-reveal", 0.5);
+//   observerClass(document.querySelector(".slider-2"), "slider-reveal", 0.5);
+//   observerClass(document.querySelector(".slider-3"), "slider-reveal", 0.5);
+//   document.querySelectorAll(".choose-us > div").forEach((card) => {
+//     observerClass(card, "swiper-slide", 0.5);
+//   });
+// }
+// if (document.querySelector(".shadow-animate")) {
+//   observerClass(
+//     document.querySelector(".shadow-animate"),
+//     "md:shadow-[0px_10px_30px_0px_rgba(0,0,0,0.25)_inset]",
+//     0.5
+//   );
+//   observerClass(
+//     document.querySelector(".shadow-animate"),
+//     "shadow-[0px_3.035px_9.105px_0px_rgba(0,0,0,0.25)_inset]",
+//     0.5
+//   );
+// }
+// if (document.querySelector(".blog")) {
+// }
