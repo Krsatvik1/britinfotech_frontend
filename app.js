@@ -51,6 +51,12 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/', (req, res) => {
   res.render('home');
 });
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+app.get('/services', (req, res) => {
+  res.render('services');
+});
 
 // Starting the server
 const port = process.env.PORT || 3000;
