@@ -207,93 +207,26 @@ header > div > h1 > span:nth-child(even) {
      opacity: 1 !important;
      
  }
- .card-animation-1 > a > div > *{
-     transform: translateY(100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.2s;
-     
- }
- .card-animation-1 > a:nth-child(odd) > div > *{
-     transform: translateY(100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.4s;
-     
- }
-.card-animation-1 > a:nth-child(odd){
-     transform: translateY(100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0s;
-}
 
-
-.card-animation-1 > a{
-     transform: translateY(100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.2s;
-}
-.slider-reveal{
-     transform: scaleX(0) !important;
-}
-.slider-1, .slider-2, .slider-3{
-     transition: all 1s ease-in-out 0.1s;
-}
-.choose-us > div > div:nth-child(1){
-     transform: translateX(-100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.2s;
-}
-.choose-us > div:nth-child(2) > div:nth-child(1){
-     transform: translateX(100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.2s;
-}
-.choose-us > div > div:last-child{
-     transform: translateX(-100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.4s;
-}
-.choose-us > div:nth-child(2) > div:last-child{
-     transform: translateX(100%);
-     opacity: 0;
-     transition: all 1s ease-in-out 0.4s;
-}
-.choose-us > div.swiper-slide > div:last-child , .choose-us > div.swiper-slide > div:nth-child(1){
-     transform: translateY(0) !important;
-     opacity: 1 !important;
-}
-@media (min-width: 768px){
-     .slider-reveal{
-          transform: scaleY(0) !important;
-     }
-     .slider-1, .slider-2{
-          transition: all 1s ease-in-out 0.1s;
-     }
-     .choose-us > div > div:nth-child(1){
-          transform: translateX(-100%);
-          opacity: 0;
-          transition: all 1s ease-in-out 0.2s;
-     }
-     .choose-us > div:nth-child(2) > div:nth-child(1){
-          transform: translateX(100%);
-          opacity: 0;
-          transition: all 1s ease-in-out 0.2s;
-     }
-     .choose-us > div > div:last-child{
-          transform: translateX(100%);
-          opacity: 0;
-          transition: all 1s ease-in-out 0.2s;
-     }
-     .choose-us > div:nth-child(2) > div:last-child{
-          transform: translateX(-100%);
-          opacity: 0;
-          transition: all 1s ease-in-out 0.2s;
-     }
-     .choose-us > div.swiper-slide > div:last-child , .choose-us > div.swiper-slide > div:nth-child(1){
-          transform: translateY(0) !important;
-          opacity: 1 !important;
-     }
-}
-
+html.lenis {
+     height: auto;
+   }
+   
+   .lenis.lenis-smooth {
+     scroll-behavior: auto !important;
+   }
+   
+   .lenis.lenis-smooth [data-lenis-prevent] {
+     overscroll-behavior: contain;
+   }
+   
+   .lenis.lenis-stopped {
+     overflow: hidden;
+   }
+   
+   .lenis.lenis-scrolling iframe {
+     pointer-events: none;
+   }
 
 /* title styles */
 .home-title span{
@@ -346,4 +279,102 @@ header > div > h1 > span:nth-child(even) {
 @keyframes a-ltr-before{
     0% {transform: translateX(0)}
     100% {transform: translateX(200%)}
+}
+.btn-30,
+.btn-30 *,
+.btn-30 :after,
+.btn-30 :before,
+.btn-30:after,
+.btn-30:before {
+  border: 0;
+  box-sizing: border-box;
+}
+.btn-30 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #072348;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  -webkit-mask-image: -webkit-radial-gradient(#072348, #e7fffd);
+}
+.btn-30:disabled {
+  cursor: default;
+}
+.btn-30:-moz-focusring {
+  outline: auto;
+}
+.btn-30 svg {
+  display: block;
+  vertical-align: middle;
+}
+.btn-30 [hidden] {
+  display: none;
+}
+.btn-30 {
+  border-radius: 999px;
+  border-width: 1px;
+  overflow: hidden;
+  position: relative;
+}
+.btn-30 span {
+  mix-blend-mode: difference;
+}
+.btn-30:before {
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 50%;
+  content: "";
+  height: 0;
+  left: 50%;
+  position: absolute;
+  top: -200%;
+  transform: translateX(-50%);
+  transition: height 0.5s;
+}
+.btn-30:hover:before {
+  height: 400%;
+}
+.btn-30 .text-container {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.btn-30 .text {
+  display: block;
+  mix-blend-mode:normal;
+  position: relative;
+}
+.btn-30:hover .text {
+     color:#072348;
+  -webkit-animation: move-up-alternate 0.5s ease forwards;
+  animation: move-up-alternate 0.5s ease forwards;
+}
+@-webkit-keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(80%);
+  }
+  51% {
+    transform: translateY(-80%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(80%);
+  }
+  51% {
+    transform: translateY(-80%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }

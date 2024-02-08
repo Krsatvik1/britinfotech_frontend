@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" class="overflow-x-hidden">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
-    <link rel="stylesheet" href="/css/index.css">
-</head>
-<body class="font-crash relative">
+        <title><%= dataSEO.data.attributes.SEO.Title %></title>
+        <meta name="description" content="<%= dataSEO.data.attributes.SEO.Description %>">
+        <meta name="keywords" content="<% dataSEOKeywords.data.attributes.SEO.Keywords.forEach((e)=>{ %> <%= e.Tag %> ,
+        <% }) %>">
+        <meta name="author" content="BritInfoTech LTD.">
+        
+        <!-- Open Graph tags -->
+        <meta property="og:title" content="<%= dataSEO.data.attributes.SEO.Title %>">
+        <meta property="og:description" content="<%= dataSEO.data.attributes.SEO.Description %>">
+        <meta property="og:image" content="<%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %>">
+        <meta property="og:url" content="<%= base_url %>">
+        <meta property="og:type" content="<%= dataSEO.data.attributes.SEO.Type %>"> <!-- Added og:type meta tag -->
+        
+        <!-- Twitter tags -->
+        <meta name="twitter:title" content="<%= dataSEO.data.attributes.SEO.Title %>">
+        <meta name="twitter:description" content="<%= dataSEO.data.attributes.SEO.Description %>">
+        <meta name="twitter:image" content="<%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %>">
+        <meta name="twitter:card" content="<%= dataSEO.data.attributes.SEO.Twitter_Card %>">
+        <link rel="stylesheet" href="/css/index.css">
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQQXVGR3B5"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-LQQXVGR3B5');
+        </script>
+        
+    </head>
+
+<body class="font-crash relative"></body>

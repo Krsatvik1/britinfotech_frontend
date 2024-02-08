@@ -1,9 +1,10 @@
-<%- include('partials/header') %> <%- include('partials/nav') %>
+<%- include('partials/header' , {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav') %>
         <header class="mx-6 md:mx-24 pt-2 md:pt-[2.25rem]">
             <div class="md:flex justify-between items-center">
                 <h1 class="font-crash home-title md:font-normal font-medium text-[1.375rem] md:text-header basis-full md:basis-auto">
-                    <span>Unlocking Your Digital Future:</span>
-                    <span>Seamless IT Solutions for Success</span>
+                    <% data1.data.attributes.Heading.forEach((e, i)=>{ %>
+                    <span><%= e.text_line%></span>
+                    <% }) %>
                 </h1>
                 <svg version="1.1" id="Layer_1" class="hidden md:block h-1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300"
@@ -90,7 +91,14 @@
             </div>
             <div
                 class="mt-14 md:mt-20 rounded-[0.4rem] md:rounded-[1.25rem] overflow-hidden h-40 md:min-h-[60%] md:h-[30rem] header-img bg-slate-500 translate-y-full opacity-0">
-                <img src="" alt="hero image" class="h-full w-full object-cover">
+                <% if (data1.data.attributes.Landing_Image.data.attributes.ext === '.mp4' || data1.data.attributes.Landing_Image.data.attributes.ext === '.avi' || data1.data.attributes.Landing_Image.data.attributes.ext === '.mov' || data1.data.attributes.Landing_Image.data.attributes.ext === '.webM') { %>
+                    <video class="h-full w-full object-cover" autoplay muted loop>
+                        <source src="<%= strapi_base %><%= data1.data.attributes.Landing_Image.data.attributes.url %>" type="video/mp4">
+                        <!-- Add more source tags for other video formats if needed -->
+                    </video>
+                <% } else { %>
+                    <img src="<%= strapi_base %><%= data1.data.attributes.Landing_Image.data.attributes.url %>" alt="<%= data1.data.attributes.Landing_Image.data.attributes.alternativeText %>" class="h-full w-full object-cover">
+                <% } %>
             </div>
         </header>
         <section class="mx-6 md:mx-24 pt-[3rem]">
@@ -98,50 +106,32 @@
                 Diving into Our Service Suite.
             </h2>
             <div class="grid grid-cols-2 mt-[1.19rem] md:mt-[1.45rem] font-crash md:gap-5 gap-4 card-animation-1">
-                <a
-                    class="block rounded-[0.80rem] p-[1px] bg-[linear-gradient(180deg,rgba(0,229,188,1)0%,rgba(11,102,157,1)100%)]">
-                    <div class="py-4 md:block flex flex-col px-6 md:px-[2.25rem] md:py-[1.19rem] bg-white rounded-xl h-full">
-                        <div class="flex items-end">
-                            <h3 class="md:font-normal font-medium leading-none text-base md:text-2xl">
-                                Cloud Computing.<span class="ml-2 hidden md:inline align-baseline text-links text-[0.625rem] md:text-[0.75rem]">
-                                    Read more
-                                </span>
-                            </h3>
+                <% data1.data.attributes.services.data.forEach(e => { %>
+                    <a href="services/<%= e.attributes.slug %>"
+                        class="hover:shadow-[0px_0px_30px_0px_rgba(72,72,94,0.3)] hover:p-1 transition-[box-shadow,padding] duration-500 ease-in-out block rounded-[0.80rem] p-[1px] bg-[linear-gradient(180deg,rgba(0,229,188,1)0%,rgba(11,102,157,1)100%)]">
+                        <div class="py-4 md:block flex flex-col px-6 md:px-[2.25rem] md:py-[1.19rem] bg-white rounded-xl h-full">
+                            <div class="flex items-end">
+                                <h3 class="md:font-normal font-medium leading-none text-base md:text-2xl">
+                                    <%= e.attributes.Brief_Heading %><span class="ml-2 hidden md:inline align-baseline text-links text-[0.625rem] md:text-[0.75rem]">
+                                        Read more
+                                    </span>
+                                </h3>
+                            </div>
+                            <p class="mt-[0.5rem] md:mt-[0.81rem] text-[0.625rem] md:text-base leading-snug">
+                                <%= e.attributes.Service_Brief %>
+                            </p>
+                            <div class="flex items-end md:hidden mt-2 flex-grow text-links text-[0.625rem] md:text-[0.75rem]">
+                                <p>Read more</p>
+                            </div>
                         </div>
-                        <p class="mt-[0.5rem] md:mt-[0.81rem] text-[0.625rem] md:text-base leading-snug">
-                            Revolutionize your IT infrastructure with seamless scalability and accessibility through our
-                            cutting-edge cloud computing solutions.
-                        </p>
-                        <div class="flex items-end md:hidden mt-2 flex-grow text-links text-[0.625rem] md:text-[0.75rem]">
-                            <p>Read more</p>
-                        </div>
-                    </div>
-                </a>
-                <a
-                    class="block rounded-[0.80rem] p-[1px] bg-[linear-gradient(180deg,rgba(0,229,188,1)0%,rgba(11,102,157,1)100%)]">
-                    <div class="py-4 md:block flex flex-col px-6 md:px-[2.25rem] md:py-[1.19rem] bg-white rounded-xl h-full">
-                        <div class="flex items-end">
-                            <h3 class="md:font-normal font-medium leading-none text-base md:text-2xl">
-                                Cloud Computing.<span class="ml-2 hidden md:inline align-baseline text-links text-[0.625rem] md:text-[0.75rem]">
-                                    Read more
-                                </span>
-                            </h3>
-                        </div>
-                        <p class="mt-[0.5rem] md:mt-[0.81rem] text-[0.625rem] md:text-base leading-snug">
-                            Revolutionize your IT infrastructure with seamless scalability and accessibility through our
-                            cutting-edge cloud computing solutions.
-                        </p>
-                        <div class="flex items-end md:hidden mt-2 flex-grow text-links text-[0.625rem] md:text-[0.75rem]">
-                            <p>Read more</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                <% }) %>
             </div>
         </section>
-       <%- include('partials/choose-us.ejs') %>
-       <%- include('partials/contact-us-card.ejs') %>
-        <%- include('partials/blogs-compenent.ejs') %>
-        <%- include('partials/clients.ejs') %>
-        <%- include('partials/form.ejs') %>
+       <%- include('partials/choose-us.ejs',{dataChooseUs, strapi_base}) %>
+       <%- include('partials/contact-us-card.ejs', {data1, strapi_base}) %>
+        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base}) %>
+        <%- include('partials/clients.ejs', {dataCompanies, strapi_base}) %>
+        <%- include('partials/form.ejs', {data1, strapi_base , heading:true, formData:false}) %>
         
         <%- include('partials/footer') %>

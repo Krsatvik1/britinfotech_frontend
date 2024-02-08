@@ -1,0 +1,60 @@
+<%- include('partials/header.ejs', {dataSEO , dataSEOKeywords , strapi_base, base_url}) %>
+    <%- include('partials/nav.ejs') %>
+        <header class="text-center mx-6 md:mx-24 pt-2 md:pt-[2.25rem]">
+            <h1 class="md:text-header md:mt-7 text-[1.375rem] mb-4 md:mb-[6.25rem]">
+                <%= data1.data.attributes.Service_Name %>
+            </h1>
+            <div class="grid md:grid-cols-2 text-left md:gap-[2.37rem] gap-[1.69rem]">
+                <div class="text-base md:text-xl flex flex-col gap-[0.44rem] md:gap-4 order-2 md:order-1">
+                    <h2 class="text-xl md:text-[2rem] leading-snug mb-[0.98rem] md:mb-10">
+                        <%= data1.data.attributes.Service_Heading_Para %>
+                    </h2>
+                    <% data1.data.attributes.Service_Detail_Para.forEach(element => { %>
+                        <p>
+                            <%= element.children[0].text %>
+                        </p>
+                        <% }) %>
+                </div>
+                <div class="overflow-hidden md:rounded-2xl  md:h-auto md:max-h-[40rem] h-40 order-1 md:order-2 rounded-[0.63rem]">
+                    <img src="<%= strapi_base + data1.data.attributes.Service_Heading_Image.data.attributes.url %>"
+                    alt="<%= data1.data.attributes.Service_Heading_Image.data.attributes.alternativeText %>" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </header>
+        <section class="mx-6 md:mx-24 pt-10 md:pt-[7rem] mb-[2.5rem] md:mb-[6rem] md:gap-[1.31rem] gap-[0.4rem]">
+            <h3 class="text-[1.125rem] font-medium md:font-normal mb-4 md:text-[3.4375rem] md:mb-[3.19rem]">
+                <%= data1.data.attributes.Benifit_Heading %>
+            </h3>
+            <div class="grid items-stretch gap-[0.79rem] grid-cols-2 md:grid-cols-4 md:gap-5">
+                <% data1.data.attributes.Benifits.forEach(element => { %>
+                    <div class="w-full rounded-[0.63038rem] bg-[#D4E7EA] md:rounded-2xl md:px-[1.19rem] md:py-[1.44rem] px-3 py-3">
+                        <h4 class="text-[1.26069rem] md:text-[2rem] mb-[0.83rem] md:mb-5 leading-snug">
+                            <%= element.Heading  %>
+                        </h4>
+                        <p class="text-xs md:text-base">
+                            <%= element.Body %>
+                        </p>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+        <section class="overflow-hidden relative">
+            <img class="w-full h-full object-cover block absolute bottom-0 top-0 " src="<%= strapi_base + data1.data.attributes.Service_Heading_Image.data.attributes.url %>"
+            alt="<%= data1.data.attributes.End_Para_Background.data.attributes.alternativeText %>">
+            <div class="mx-6 relative md:mx-24 z-10 py-4 md:py-20 text-white md:pr-64">
+                <h3 class="text-base md:text-[2.5rem] font-medium leading-snug mb-[0.69rem] md:mb-14">
+                    <%= data1.data.attributes.End_Heading %>
+                </h3>
+                <% data1.data.attributes.End_Para.forEach(element => { %>
+                    <p class="text-xs md:text-[1.5rem] leading-tight font-medium ">
+                        <%= element.children[0].text %>
+                    </p>
+                <% }) %>
+            </div>
+        </section>
+        
+        <%- include('partials/clients.ejs', {dataCompanies, strapi_base}) %>
+        <%- include('partials/expectation.ejs' , {heading:true}) %>
+        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base}) %>
+            <%- include('partials/form.ejs',{heading:false, formData}) %>
+                <%- include('partials/footer.ejs') %>
