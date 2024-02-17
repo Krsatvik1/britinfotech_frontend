@@ -1,0 +1,146 @@
+<%- include('partials/header' , {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav', {dataContact:data1}) %>
+        <header class="mx-6 md:mx-24 pt-10 md:pt-[2.25rem]">
+            <div class="">
+                <h1
+                    class="font-crash home-title md:font-normal font-medium text-[1.375rem] md:text-header basis-full md:basis-auto">
+                    <%= data1.data.attributes.Heading %>
+                </h1>
+                <p class="text-base md:text-lg md:max-w-[60rem] md:mt-4 mt-8">
+                    <%= data1.data.attributes.Paragraph %>
+                </p>
+            </div>
+        </header>
+        <section
+            class="mx-6 md:mx-24 mt-10 md:mt-[2.25rem] md:rounded-[1.25rem] rounded-[0.75rem] overflow-hidden bg-[linear-gradient(89deg,#0B669D_62.52%,#00E5BC_129.3%)] md:flex">
+            <div class="md:rounded-r-[1.25rem] rounded-b-[0.75rem] md:w-[60%] rounded-r-[0.75rem] overflow-hidden md:pb-0 pb-10 bg-white md:p-16">
+                <form id="form" class="space-y-10" method="POST" action="/contact/submit">
+                    <div>
+                        <label for="name" class="block text-[#969696] text-sm">Name</label>
+                        <input id="name" name="contact[name]" type="text"
+                            class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    </div>
+                    <div>
+                        <label for="company" class="block text-[#969696] text-sm">Company Name</label>
+                        <input id="company" name="contact[company]" type="text"
+                            class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    </div>
+                    <div>
+                        <label for="email" class="block text-[#969696] text-sm">Email</label>
+                        <input id="email" name="contact[email]" type="text"
+                            class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    </div>
+                    <div>
+                        <label for="mobile" class="block text-[#969696] text-sm">Phone Number</label>
+                        <input id="mobile" name="contact[mobile]" type="text"
+                            class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    </div>
+                    <div>
+                        <label for="message" class="block text-[#969696] text-sm">How can we help you?</label>
+                        <textarea id="message" name="contact[message]" type="text"
+                            class="w-full block border-b-[1px] h-32 active:outline-none border-black md:text-lg text-base"></textarea>
+                    </div>
+                    <div class="flex md:gap-6 gap-2">
+                        <input type="checkbox" id="subscribe" name="contact[subscribe]"
+                            class="border-b-[1px] active:outline-none border-black w-6 h-6" />
+                        <label class="block md:text-base text-sm font-medium align-middle" for="subscribe">Subcribe to our newsletter for updates</label>
+                    </div>
+                    <div>
+                        <button data-sitekey="6Ldez3UpAAAAAGX-faudz3vKoV4dI46MDIXFSKpI"
+                        data-callback='onSubmit'
+                        data-action='submit' class="g-recaptcha  rounded-full btn-30 text-center flex justify-center items-center h-12 w-44 font-normal">
+                            <p class="text-container basis-full"><span class="text">Let's Talk</span></p>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="flex-grow md:py-16 px-4 py-8 md:px-8 text-white space-y-8">
+                <h2 class="text-[2rem]">
+                    More ways to contact us
+                </h2>
+                <div class="space-y-4">
+                    <a href="tel:<%= data1.data.attributes.Phone_No%>" class="flex gap-8">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-full aspect-square" viewBox="0 0 21 21"
+                                fill="none">
+                                <path
+                                    d="M15.225 19.2501C11.6526 19.2455 8.2279 17.8243 5.70185 15.2982C3.1758 12.7722 1.75463 9.34747 1.75 5.7751C1.75 4.7076 2.17406 3.68383 2.9289 2.929C3.68373 2.17416 4.7075 1.7501 5.775 1.7501C6.00105 1.74838 6.22672 1.76889 6.44875 1.81135C6.6634 1.84311 6.87441 1.89587 7.07875 1.96885C7.22247 2.01928 7.35053 2.10634 7.45028 2.22144C7.55003 2.33653 7.61801 2.47567 7.6475 2.6251L8.84625 7.8751C8.87856 8.01761 8.87467 8.16593 8.83493 8.30655C8.79519 8.44716 8.72087 8.57559 8.61875 8.6801C8.505 8.8026 8.49625 8.81135 7.42 9.37135C8.28187 11.2621 9.79405 12.7805 11.6813 13.6501C12.25 12.5651 12.2587 12.5564 12.3813 12.4426C12.4858 12.3405 12.6142 12.2662 12.7548 12.2264C12.8954 12.1867 13.0437 12.1828 13.1863 12.2151L18.4363 13.4138C18.5809 13.4474 18.7146 13.5172 18.8248 13.6167C18.935 13.7162 19.0181 13.8421 19.0663 13.9826C19.1401 14.1903 19.1957 14.404 19.2325 14.6213C19.2677 14.8413 19.2853 15.0636 19.285 15.2863C19.2689 16.3493 18.8329 17.3627 18.0722 18.1053C17.3116 18.8479 16.288 19.2595 15.225 19.2501Z"
+                                    fill="#00E5BC" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>
+                                <%= data1.data.attributes.Phone_No%>
+                            </h3>
+                        </div>
+                    </a>
+                    <a href="mail:<%= data1.data.attributes.email%>" class="flex gap-8">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="aspect-square h-full" viewBox="0 0 24 24"
+                                fill="none">
+                                <g clip-path="url(#clip0_629_4507)">
+                                    <path
+                                        d="M22 7.53125V16.9963C22 17.7615 21.7077 18.4978 21.1827 19.0545C20.6578 19.6113 19.9399 19.9464 19.176 19.9913L19 19.9963H5C4.23479 19.9963 3.49849 19.7039 2.94174 19.179C2.38499 18.654 2.04989 17.9361 2.005 17.1723L2 16.9963V7.53125L11.445 13.8282L11.561 13.8942C11.6977 13.961 11.8478 13.9958 12 13.9958C12.1522 13.9958 12.3023 13.961 12.439 13.8942L12.555 13.8282L22 7.53125Z"
+                                        fill="#00E5BC" />
+                                    <path
+                                        d="M19.0003 4C20.0803 4 21.0273 4.57 21.5553 5.427L12.0003 11.797L2.44531 5.427C2.69604 5.01977 3.04053 4.6784 3.45002 4.43138C3.85951 4.18436 4.32214 4.03886 4.79931 4.007L5.00031 4H19.0003Z"
+                                        fill="#00E5BC" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_629_4507">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>
+                                <%= data1.data.attributes.email%>
+                            </h3>
+                        </div>
+                    </a>
+                    <div class="flex gap-8">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="aspect-square h-full" viewBox="0 0 24 24"
+                                fill="none">
+                                <g clip-path="url(#clip0_629_4512)">
+                                    <path
+                                        d="M10 20C10 20 3 10.87 3 7C3 6.08075 3.18106 5.1705 3.53284 4.32122C3.88463 3.47194 4.40024 2.70026 5.05025 2.05025C5.70026 1.40024 6.47194 0.884626 7.32122 0.532843C8.1705 0.18106 9.08075 0 10 0C10.9193 0 11.8295 0.18106 12.6788 0.532843C13.5281 0.884626 14.2997 1.40024 14.9497 2.05025C15.5998 2.70026 16.1154 3.47194 16.4672 4.32122C16.8189 5.1705 17 6.08075 17 7C17 10.87 10 20 10 20ZM10 9C10.5304 9 11.0391 8.78929 11.4142 8.41421C11.7893 8.03914 12 7.53043 12 7C12 6.46957 11.7893 5.96086 11.4142 5.58579C11.0391 5.21071 10.5304 5 10 5C9.46957 5 8.96086 5.21071 8.58579 5.58579C8.21071 5.96086 8 6.46957 8 7C8 7.53043 8.21071 8.03914 8.58579 8.41421C8.96086 8.78929 9.46957 9 10 9Z"
+                                        fill="#00E5BC" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_629_4512">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>
+                                <%= data1.data.attributes.Address%>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="flex gap-8">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="aspect-square h-full" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M12 2.25C6.61547 2.25 2.25 6.61547 2.25 12C2.25 17.3845 6.61547 21.75 12 21.75C17.3845 21.75 21.75 17.3845 21.75 12C21.75 6.61547 17.3845 2.25 12 2.25ZM16.5 13.5H12C11.8011 13.5 11.6103 13.421 11.4697 13.2803C11.329 13.1397 11.25 12.9489 11.25 12.75V6C11.25 5.80109 11.329 5.61032 11.4697 5.46967C11.6103 5.32902 11.8011 5.25 12 5.25C12.1989 5.25 12.3897 5.32902 12.5303 5.46967C12.671 5.61032 12.75 5.80109 12.75 6V12H16.5C16.6989 12 16.8897 12.079 17.0303 12.2197C17.171 12.3603 17.25 12.5511 17.25 12.75C17.25 12.9489 17.171 13.1397 17.0303 13.2803C16.8897 13.421 16.6989 13.5 16.5 13.5Z"
+                                    fill="#00E5BC" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>
+                                <%= data1.data.attributes.Timing%>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <iframe src="<%= data1.data.attributes.Geo_Location_data  %>" style="border:0;" allowfullscreen=""
+                    class="w-full overflow-hidden rounded-[0.5rem] md:rounded-[1rem] min-h-[20rem]" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <%- include('partials/footer' , {flash}) %>

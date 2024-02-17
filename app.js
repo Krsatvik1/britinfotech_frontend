@@ -53,6 +53,7 @@ if (process.env.NODE_ENV === 'development') {
   const livereload = require("livereload");
   const connectLiveReload = require("connect-livereload");
   const morgan = require('morgan');
+const axios = require('axios');
   //Morgan code
   app.use(morgan('dev'));
 
@@ -79,7 +80,7 @@ app.get('/', async (req, res) => {
     let dataCompanies = await getApiData('company-heading?populate[companies][populate][0]=Company_Logo');
     let dataSocial = await getApiData('social?populate=*');
 
-    res.render('home', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, strapi_base, base_url: base_url+req.path });
+    res.render('home', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -99,7 +100,7 @@ app.get('/about', async (req, res) => {
     let dataExpectation = await getApiData('expection?populate=*');
     //console log all the data in the console in a structured way
 
-    res.render('about', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataCompanies, dataSocial, dataEmployees, dataExpectation, strapi_base, base_url: base_url+req.path });
+    res.render('about', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataCompanies, dataSocial, dataEmployees, dataExpectation, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -115,7 +116,7 @@ app.get('/services', async (req, res) => {
     let dataSocial = await getApiData('social?populate=*');
     let dataEmployees = await getApiData('employees-component?populate[employees][populate][0]=Profile_Pic');
     //console log all the data in the console in a structured way
-    res.render('services', { dataSEO, dataSEOKeywords , dataContact, data1, dataServices, dataSocial, dataEmployees, strapi_base, base_url: base_url+req.path });
+    res.render('services', { dataSEO, dataSEOKeywords , dataContact, data1, dataServices, dataSocial, dataEmployees, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -139,19 +140,119 @@ app.get('/services/:id', async (req, res) => {
     dataSEO.data = dataSEO.data[0]
     dataSEOKeywords.data = dataSEOKeywords.data[0]
     data1.data = data1.data[0]
-    console.log(formData);
-    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, strapi_base, base_url: base_url + req.path , formData});
+    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, strapi_base, base_url: base_url + req.path , formData, flash: req.flash()});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.get('/contact', async (req, res) => {
+  try {
+    let dataSEO = await getApiData(`contact?populate[SEO][populate][0]=SEO_image`);
+    let dataSEOKeywords = await getApiData(`contact?populate[SEO][populate][0]=Keywords`);
+    let data1 = await getApiData(`contact?populate=*`);
+    res.render('contact', { dataSEO, dataSEOKeywords, data1, strapi_base, base_url: base_url + req.path, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
   }
 });
 
-// handle wildcard
-app.get('/*', (req, res) => {
-  res.send('404 Page Not Found');
-});
+app.post('/submit', async (req, res) => {
+  try {
+    const data1 = req.body;
+    const email = data1.contact.email;
+    const recaptchaToken = req.body['g-recaptcha-response'];
+    console.log(recaptchaToken);
+    const recaptchaApiUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    const recaptchaResponse = await axios.post(recaptchaApiUrl, null, {
+      params: {
+          secret: process.env.G_RECAPTCHA_SECRET,
+          response: recaptchaToken
+      }
+    });
+    if (recaptchaResponse.data.success) {
+      const response = await axios.post(process.env.STRAPI_URL+'contact-smalls', {
+        "data": {
+          "email": email
+        }
+      }, {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_TOKEN}`
+        }
+      });
 
+      req.flash('success', 'Thanks for submitting'); // Set flash message
+      res.redirect('back');
+    } else {
+      req.flash('error', 'Failed to verify reCAPTCHA'); // Set flash message
+      res.redirect('back');
+    }
+  } catch (error) {
+    console.log(error.response);
+    req.flash('error', 'Internal Server Error'); // Set flash message
+    res.redirect('back');
+  }
+});
+app.post('/contact/submit', async (req, res) => {
+  try {
+    const data1 = req.body;
+    const name = data1.contact.name;
+    const company = data1.contact.company;
+    const email = data1.contact.email;
+    const phone = data1.contact.mobile;
+    const message = data1.contact.message;
+    const newsletter = data1.contact.subscribe;
+    const recaptchaToken = req.body['g-recaptcha-response'];
+    console.log(data1);
+    const recaptchaApiUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    const recaptchaResponse = await axios.post(recaptchaApiUrl, null, {
+      params: {
+          secret: process.env.G_RECAPTCHA_SECRET,
+          response: recaptchaToken
+      }
+    });
+    if (recaptchaResponse.data.success) {
+      const response = await axios.post(process.env.STRAPI_URL+'contact-mains', {
+        "data": {
+          "name": name,
+          "company": company,
+          "email": email,
+          "phone": phone,
+          "message": message,
+          "newsletter": newsletter === 'on' ? true : false
+        }
+      }, {
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_TOKEN}`
+        }
+      });
+      console.log(response.data); // Log the response from Strapi
+
+      req.flash('success', 'Thanks for submitting'); // Set flash message
+      res.redirect('back');
+    } else {
+      req.flash('error', 'Failed to verify reCAPTCHA'); // Set flash message
+      res.redirect('back');
+    }
+  } catch (error) {
+    console.log(error.response);
+    req.flash('error', 'Internal Server Error'); // Set flash message
+    res.redirect('back');
+  }
+});
+// handle wildcard
+app.get('/*', async (req, res) => {
+  try {
+    let dataSEO = null;
+    let dataSEOKeywords = [];
+    let dataContact = await getApiData('contact?populate=*');
+    res.render('none', { dataSEO, dataSEOKeywords, dataContact, base_url: base_url + req.path, strapi_base, flash: req.flash()});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 // Starting the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

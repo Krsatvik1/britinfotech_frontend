@@ -167,7 +167,7 @@ if (document.querySelector(".choose-us")) {
         trigger: seg,
         start: "top 90%",
         end: "bottom 90%",
-        scrub: true,
+        scrub: false,
         markers: false,
       },
     });
@@ -247,9 +247,9 @@ if (document.querySelector(".client-list")) {
   const items = Array.from(document.querySelectorAll(".client-list > div"));
 
   gsap.set(container, { x: 0 }); // Initial position
-
+  var i = window.innerWidth >= 768 ? "200" : "0";
   gsap.to(container, {
-    x: `-=${items.length * 200}px`, // Move to the left by the total width of all items
+    x: `-=${items.length * i}px`, // Move to the left by the total width of all items
     duration: 20, // Duration of the animation
     repeat: -1, // Repeat indefinitely
     ease: "none", // Linear movement

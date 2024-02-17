@@ -138,7 +138,7 @@ if (document.querySelector(".choose-us")) {
         trigger: seg,
         start: "top 90%",
         end: "bottom 90%",
-        scrub: true,
+        scrub: false,
         markers: false
       }
     });
@@ -215,9 +215,9 @@ if (document.querySelector(".client-list")) {
   _gsap.gsap.set(container, {
     x: 0
   }); // Initial position
-
+  var i = window.innerWidth >= 768 ? "200" : "0";
   _gsap.gsap.to(container, {
-    x: "-=".concat(items.length * 200, "px"),
+    x: "-=".concat(items.length * i, "px"),
     // Move to the left by the total width of all items
     duration: 20,
     // Duration of the animation

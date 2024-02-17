@@ -2,36 +2,39 @@
 <html lang="en" class="overflow-x-hidden">
 
 <head>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="icon" type="image/png" href="/images/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><%= dataSEO.data.attributes.SEO.Title %></title>
-        <meta name="description" content="<%= dataSEO.data.attributes.SEO.Description %>">
-        <meta name="keywords" content="<% dataSEOKeywords.data.attributes.SEO.Keywords.forEach((e)=>{ %> <%= e.Tag %> ,
-        <% }) %>">
-        <meta name="author" content="BritInfoTech LTD.">
-        
-        <!-- Open Graph tags -->
-        <meta property="og:title" content="<%= dataSEO.data.attributes.SEO.Title %>">
-        <meta property="og:description" content="<%= dataSEO.data.attributes.SEO.Description %>">
-        <meta property="og:image" content="<%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %>">
-        <meta property="og:url" content="<%= base_url %>">
-        <meta property="og:type" content="<%= dataSEO.data.attributes.SEO.Type %>"> <!-- Added og:type meta tag -->
-        
-        <!-- Twitter tags -->
-        <meta name="twitter:title" content="<%= dataSEO.data.attributes.SEO.Title %>">
-        <meta name="twitter:description" content="<%= dataSEO.data.attributes.SEO.Description %>">
-        <meta name="twitter:image" content="<%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %>">
-        <meta name="twitter:card" content="<%= dataSEO.data.attributes.SEO.Twitter_Card %>">
-        <link rel="stylesheet" href="/css/index.css">
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQQXVGR3B5"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {dataLayer.push(arguments);}
-            gtag('js', new Date());
+    <title>
+        <% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Title) { %>
+            <%= dataSEO.data.attributes.SEO.Title %>
+        <% } %>
+    </title>
+    <meta name="description" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Description) { %><%= dataSEO.data.attributes.SEO.Description %><% } %>">
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Title) { %><%= dataSEO.data.attributes.SEO.Title %><% } %>">
+    <meta property="og:description" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Description) { %><%= dataSEO.data.attributes.SEO.Description %><% } %>">
+    <meta property="og:image" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.SEO_image && dataSEO.data.attributes.SEO.SEO_image.data && dataSEO.data.attributes.SEO.SEO_image.data.attributes && dataSEO.data.attributes.SEO.SEO_image.data.attributes.url) { %><%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %><% } %>">
+    <meta property="og:url" content="<% if (base_url) { %><%= base_url %><% } %>">
+    <meta property="og:type" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Type) { %><%= dataSEO.data.attributes.SEO.Type %><% } %>"> <!-- Added og:type meta tag -->
 
-            gtag('config', 'G-LQQXVGR3B5');
-        </script>
-        
-    </head>
+    <!-- Twitter tags -->
+    <meta name="twitter:title" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Title) { %><%= dataSEO.data.attributes.SEO.Title %><% } %>">
+    <meta name="twitter:description" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Description) { %><%= dataSEO.data.attributes.SEO.Description %><% } %>">
+    <meta name="twitter:image" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.SEO_image && dataSEO.data.attributes.SEO.SEO_image.data && dataSEO.data.attributes.SEO.SEO_image.data.attributes && dataSEO.data.attributes.SEO.SEO_image.data.attributes.url) { %><%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %><% } %>">
+    <meta name="twitter:card" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Twitter_Card) { %><%= dataSEO.data.attributes.SEO.Twitter_Card %><% } %>">
+    <link rel="stylesheet" href="/css/index.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQQXVGR3B5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-<body class="font-crash relative"></body>
+        gtag('config', 'G-LQQXVGR3B5');
+    </script>
+    <meta name="keywords" content="<% if (dataSEOKeywords && dataSEOKeywords.data && dataSEOKeywords.data.attributes && dataSEOKeywords.data.attributes.SEO && dataSEOKeywords.data.attributes.SEO.Keywords) { %><% dataSEOKeywords.data.attributes.SEO.Keywords.forEach((e)=>{ %> <%= e.Tag %> , <% }) %><% } %>">
+    <meta name="author" content="BritInfoTech LTD.">
+</head>
+
+<body class="font-crash relative">

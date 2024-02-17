@@ -2,7 +2,7 @@
   <!-- nav header - start -->
   <div class="bg-deepBlue py-3 text-xs md:text-base px-6 md:px-24 leading-0 flex justify-end relative z-20">
     <a
-      href="tel:07812503239"
+      href="tel:<%= dataContact.data.attributes.Phone_No %>"
       class="flex font-medium gap-2 items-center pr-4 border-r-[0.0625rem] border-lightBlue"
     >
       <!-- pull from strapi -->
@@ -11,11 +11,11 @@
       </div>
       <div class="md:block hidden">
         <!-- pull from strapi -->
-        0781 250 3239
+        <%= dataContact.data.attributes.Phone_No %>
       </div>
     </a>
     <a
-      href="mailto:info@Britinfotech.co.uk"
+      href="mailto:<%= dataContact.data.attributes.email%>"
       class="flex font-medium gap-2 items-center pl-4"
     >
       <!-- pull from strapi -->
@@ -28,7 +28,7 @@
       </div>
       <div class="">
         <!-- pull from strapi -->
-        info@Britinfotech.co.uk
+        <%= dataContact.data.attributes.email%>
       </div>
     </a>
   </div>
@@ -118,7 +118,7 @@
       </li>
       <li class="flex items-center basis-14">
         <a
-          href="/Insights"
+          href="/contact"
           class="inline-block py-2.5 font-medium hover:text-lightBlue"
           >Contact Us</a
         >

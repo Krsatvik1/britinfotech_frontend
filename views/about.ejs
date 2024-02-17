@@ -1,4 +1,4 @@
-<%- include('partials/header', {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav') %>
+<%- include('partials/header', {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav', {dataContact}) %>
         <header class="text-center mx-6 md:mx-24 pt-2 md:pt-[2.25rem]">
             <h1 class="md:text-header md:mt-7 md:font-normal font-medium text-[1.375rem]">
                 <%= data1.data.attributes.Heading %>
@@ -46,4 +46,4 @@
                 </section>
                 <%- include('partials/clients.ejs', {dataCompanies, strapi_base}) %>
                     <%- include('partials/form.ejs', {data1, strapi_base , heading:true, formData:false}) %>
-                        <%- include('partials/footer') %>
+                        <%- include('partials/footer' , {flash}) %>
