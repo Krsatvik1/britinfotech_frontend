@@ -283,6 +283,14 @@ app.post('/contact/submit', async (req, res) => {
     res.redirect('back');
   }
 });
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send(`User-agent: *
+Disallow: /private/
+Disallow: /admin/
+Disallow: /secret-page.html
+Allow: /`);
+});
 // handle wildcard
 app.get('/*', async (req, res) => {
   try {
