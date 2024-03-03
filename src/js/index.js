@@ -264,32 +264,32 @@ if (document.querySelector(".client-list")) {
     },
   });
 }
-if (document.querySelector(".blog-comp")) {
-  var blog = document.querySelector(".blog-comp");
-  var blogItems = document.querySelectorAll(".blog-comp > div");
-  var itemWidth = window.innerWidth >= 768 ? 29 : 17.75;
-  let intial = 0
-  let keyframes = []
-  var tl = new TimelineMax();
-  blogItems.forEach((item, k) => {
-    var tl = new TimelineMax({delay:k*2});
-    keyframes.push({
-      x: -itemWidth+"rem",
-      duration: 2,
-      ease: "power4.inOut",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 80%",
-        end: "bottom 80%",
-        scrub: false,
-        markers: false,
-      },
-    });
+// if (document.querySelector(".blog-comp")) {
+//   var blog = document.querySelector(".blog-comp");
+//   var blogItems = document.querySelectorAll(".blog-comp > div");
+//   var itemWidth = window.innerWidth >= 768 ? 29 : 17.75;
+//   let intial = 0
+//   let keyframes = []
+//   var tl = new TimelineMax();
+//   blogItems.forEach((item, k) => {
+//     var tl = new TimelineMax({delay:k*2});
+//     keyframes.push({
+//       x: -itemWidth+"rem",
+//       duration: 2,
+//       ease: "power4.inOut",
+//       scrollTrigger: {
+//         trigger: item,
+//         start: "top 80%",
+//         end: "bottom 80%",
+//         scrub: false,
+//         markers: false,
+//       },
+//     });
 
-   itemWidth += itemWidth;
-  });
-  tl.to(
-  blog,
-    keyframes
- );
- }
+//    itemWidth += itemWidth;
+//   });
+//   tl.to(
+//   blog,
+//     keyframes
+//  );
+//  }

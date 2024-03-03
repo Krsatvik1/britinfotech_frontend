@@ -1,41 +1,47 @@
 <section class="px-6 md:px-24 mt-[4rem] md:mt-[6.6rem] mb-20 overflow-x-hidden">
     <div>
-        <div class="flex justify-between items-center gap-8">
-            <div class="basis-3/4">
-                <h2 class="text-base md:text-[2.5rem] leading-tight md:font-normal font-medium ">
-                    <%= dataBlog.data.attributes.Heading %>
-                </h2>
-                <p class="mt-[0.19rem] md:mt-[1rem] text-[0.75rem] md:text-2xl leading-tight">
-                    <%= dataBlog.data.attributes.Paragraph %>
-                </p>
-            </div>
-            <div>
-                <a href="/blogs" class="w-20 text-center md:w-[13.3rem] btn-30 rounded-full flex justify-center items-center text-[0.6rem] md:text-xl bg-darkBlue text-white py-3 md:py-4 leading-none">
-                    <p class="text-container basis-full"><span class="text">View all</span></p>
-                </a>
-            </div>
-        </div>
-        <div class="flex overflow-visible blog-comp w-max items-stretch mt-16 gap-5 font-crash flex-nowrap">
-            <% dataBlog.data.attributes.blogs.data.forEach((e, k)=>{%>
-            <a href="/blogs/<%= e.attributes.slug %>" class="w-[17.75rem] hover:shadow-[0px_0px_30px_0px_rgba(72,72,94,0.3)] hover:p-1 transition-[box-shadow,padding] duration-500 ease-in-out block md:w-[29rem] rounded-[0.46rem] md:rounded-[0.80rem] p-[1px] bg-[linear-gradient(180deg,rgba(0,229,188,1)0%,rgba(11,102,157,1)100%)]">
-                <div class="h-full bg-white rounded-[0.4rem] md:rounded-xl p-2 md:p-4">
-                    <div class="h-[13rem] md:h-[21rem] overflow-hidden rounded-[0.30675rem] md:rounded-lg">
-                        <img src="<%= strapi_base %><%= e.attributes.Card_Image.data.attributes.url %>" alt="<%= e.attributes.Card_Image.data.attributes.alternativeText %>" class="h-full w-full object-cover">
-                    </div>
-                    <div class="mt-[1.92rem] md:mt-[3rem] px-2 md:px-3">
-                        <h3 class="text-[0.8125rem] font-medium md:font-normal md:text-xl">
-                            <%= e.attributes.Card_Heading  %>
-                        </h3>
-                        <p class="mt-[0.6rem] md:mt-[1rem] md:text-base text-[0.6875rem]">
-                            <%= e.attributes.Card_Brief  %>
-                        </p>
-                        <div class="mt-8 mb-1 md:mb-0 text-[0.76688rem] md:text-base text-links underline">
-                            Read More
-                        </div>
-                    </div>
+        <% if (!blogHeading) { %>
+            <div class="flex justify-between items-center gap-8">
+                <div class="basis-3/4">
+                    <h2 class="text-base md:text-[2.5rem] leading-tight md:font-normal font-medium ">
+                        <%= dataBlog.data.attributes.Heading %>
+                    </h2>
+                    <p class="mt-[0.19rem] md:mt-[1rem] text-[0.75rem] md:text-2xl leading-tight">
+                        <%= dataBlog.data.attributes.Paragraph %>
+                    </p>
                 </div>
-            </a>
-            <%}) %>
-        </div>
+                <div>
+                    <a href="/blogs"
+                        class="w-20 text-center md:w-[13.3rem] btn-30 rounded-full flex justify-center items-center text-[0.6rem] md:text-xl bg-darkBlue text-white py-3 md:py-4 leading-none">
+                        <p class="text-container basis-full"><span class="text">View all</span></p>
+                    </a>
+                </div>
+        <% } %>
+            </div>
+            <div class="flex overflow-visible blog-comp justify-between mt-16 gap-5 font-crash flex-wrap">
+                <% dataBlog.data.attributes.blogs.data.forEach((e, k)=>{%>
+                    <a href="/insights/<%= e.attributes.slug %>"
+                        class="max-w-[25.75rem] hover:shadow-[0px_0px_30px_0px_rgba(72,72,94,0.3)] hover:p-1 transition-[box-shadow,padding] duration-500 ease-in-out block rounded-[0.46rem] md:rounded-[0.80rem] p-[1px] bg-[linear-gradient(180deg,rgba(0,229,188,1)0%,rgba(11,102,157,1)100%)]">
+                        <div class="h-full bg-white rounded-[0.4rem] md:rounded-xl p-2 md:p-4">
+                            <div class="h-[13rem] md:h-[21rem] overflow-hidden rounded-[0.30675rem] md:rounded-lg">
+                                <img src="<%= strapi_base %><%= e.attributes.Card_Image.data.attributes.url %>"
+                                    alt="<%= e.attributes.Card_Image.data.attributes.alternativeText %>"
+                                    class="h-full w-full object-cover">
+                            </div>
+                            <div class="mt-[1.92rem] md:mt-[3rem] px-2 md:px-3">
+                                <h3 class="text-[0.8125rem] font-medium md:font-normal md:text-xl">
+                                    <%= e.attributes.Card_Heading %>
+                                </h3>
+                                <p class="mt-[0.6rem] md:mt-[1rem] md:text-base text-[0.6875rem]">
+                                    <%= e.attributes.Card_Brief %>
+                                </p>
+                                <div class="mt-8 mb-1 md:mb-0 text-[0.76688rem] md:text-base text-links underline">
+                                    Read More
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <%}) %>
+            </div>
     </div>
 </section>

@@ -1,14 +1,14 @@
 <%- include('partials/header' , {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav', {dataContact}) %>
         <header class="mx-6 md:mx-24 pt-2 md:pt-[2.25rem]">
-            <div class="md:flex justify-between items-center">
-                <h1 class="font-crash home-title md:font-normal font-medium text-[1.375rem] md:text-header basis-full md:basis-auto">
+            <div class="md:flex mt-10 md:mt-0 justify-between items-center">
+                <h1 class="font-crash md:max-w-[90%] home-title md:font-normal font-medium text-[1.375rem] md:text-header basis-full md:basis-auto leading-tight">
                     <% data1.data.attributes.Heading.forEach((e, i)=>{ %>
-                    <span><%= e.text_line%></span>
+                    <%= e.text_line%>
                     <% }) %>
                 </h1>
             </div>
             <div
-                class="mt-14 md:mt-20 rounded-[0.4rem] md:rounded-[1.25rem] overflow-hidden h-40 md:min-h-[60%] md:h-[30rem] header-img bg-slate-500 translate-y-full opacity-0">
+                class="mt-14 md:mt-20 rounded-[0.4rem] md:rounded-[1.25rem] overflow-hidden h-[20rem] md:min-h-[40rem] header-img bg-slate-500 translate-y-full opacity-0">
                 <% if (data1.data.attributes.Landing_Image.data.attributes.ext === '.mp4' || data1.data.attributes.Landing_Image.data.attributes.ext === '.avi' || data1.data.attributes.Landing_Image.data.attributes.ext === '.mov' || data1.data.attributes.Landing_Image.data.attributes.ext === '.webM') { %>
                     <video class="h-full w-full object-cover" autoplay muted loop>
                         <source src="<%= strapi_base %><%= data1.data.attributes.Landing_Image.data.attributes.url %>" type="video/mp4">
@@ -48,8 +48,8 @@
         </section>
        <%- include('partials/choose-us.ejs',{dataChooseUs, strapi_base}) %>
        <%- include('partials/contact-us-card.ejs', {data1, strapi_base}) %>
-        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base}) %>
+        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base,blogHeading:false}) %>
         <%- include('partials/clients.ejs', {dataCompanies, strapi_base}) %>
         <%- include('partials/form.ejs', {data1, strapi_base , heading:true, formData:false}) %>
         
-        <%- include('partials/footer' , {flash}) %>
+        <%- include('partials/footer' , {flash,dataLegal}) %>

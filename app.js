@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'development') {
   const livereload = require("livereload");
   const connectLiveReload = require("connect-livereload");
   const morgan = require('morgan');
-const axios = require('axios');
+  const axios = require('axios');
   //Morgan code
   app.use(morgan('dev'));
 
@@ -79,8 +79,9 @@ app.get('/', async (req, res) => {
     let dataBlog = await getApiData('blog-component?populate[blogs][populate][0]=Card_Image');
     let dataCompanies = await getApiData('company-heading?populate[companies][populate][0]=Company_Logo');
     let dataSocial = await getApiData('social?populate=*');
+    let dataLegal = await getApiData('legal?populate=*');
 
-    res.render('home', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    res.render('home', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -98,9 +99,10 @@ app.get('/about', async (req, res) => {
     let dataSocial = await getApiData('social?populate=*');
     let dataEmployees = await getApiData('employees-component?populate[employees][populate][0]=Profile_Pic');
     let dataExpectation = await getApiData('expection?populate=*');
+    let dataLegal = await getApiData('legal?populate=*');
     //console log all the data in the console in a structured way
 
-    res.render('about', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataCompanies, dataSocial, dataEmployees, dataExpectation, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    res.render('about', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataCompanies, dataSocial, dataEmployees, dataExpectation, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -115,8 +117,9 @@ app.get('/services', async (req, res) => {
     let dataServices = await getApiData('services-page?populate[services][populate][0]=Service_Brief_Image');
     let dataSocial = await getApiData('social?populate=*');
     let dataEmployees = await getApiData('employees-component?populate[employees][populate][0]=Profile_Pic');
+    let dataLegal = await getApiData('legal?populate=*');
     //console log all the data in the console in a structured way
-    res.render('services', { dataSEO, dataSEOKeywords , dataContact, data1, dataServices, dataSocial, dataEmployees, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    res.render('services', { dataSEO, dataSEOKeywords , dataContact, data1, dataServices, dataSocial, dataEmployees, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -140,7 +143,8 @@ app.get('/services/:id', async (req, res) => {
     dataSEO.data = dataSEO.data[0]
     dataSEOKeywords.data = dataSEOKeywords.data[0]
     data1.data = data1.data[0]
-    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, strapi_base, base_url: base_url + req.path , formData, flash: req.flash()});
+    let dataLegal = await getApiData('legal?populate=*');
+    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, dataLegal, strapi_base, base_url: base_url + req.path , formData, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -151,13 +155,51 @@ app.get('/contact', async (req, res) => {
     let dataSEO = await getApiData(`contact?populate[SEO][populate][0]=SEO_image`);
     let dataSEOKeywords = await getApiData(`contact?populate[SEO][populate][0]=Keywords`);
     let data1 = await getApiData(`contact?populate=*`);
-    res.render('contact', { dataSEO, dataSEOKeywords, data1, strapi_base, base_url: base_url + req.path, flash: req.flash()});
+    let dataLegal = await getApiData('legal?populate=*');
+    res.render('contact', { dataSEO, dataSEOKeywords, data1, dataLegal, strapi_base, base_url: base_url + req.path, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
   }
 });
-
+app.get('/insights', async (req, res) => {
+  try {
+    let dataSEO = await getApiData(`contact?populate[SEO][populate][0]=SEO_image`);
+    let dataSEOKeywords = await getApiData(`contact?populate[SEO][populate][0]=Keywords`);
+    let dataContact = await getApiData(`contact?populate=*`);
+    let data1 = await getApiData(`blogs-page?populate=*`);
+    let dataFeatured = await getApiData(`blogs-page?populate[Featured_Article][populate][]=Full_Image`);
+    let dataBlog = await getApiData('blog-component?populate[blogs][populate][0]=Card_Image');
+    let formData = await getApiData(`contact-form-all`);
+    let dataLegal = await getApiData('legal?populate=*');
+    res.render('insights', { dataSEO, dataBlog, dataSEOKeywords, dataContact, data1, dataFeatured, dataLegal, strapi_base, formData, base_url: base_url + req.path, flash: req.flash()});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.get('/insights/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    let dataSEO = await getApiData(`blogs?filters[slug]=${id}&populate[SEO][populate][0]=SEO_image`);
+    let dataSEOKeywords = await getApiData(`blogs?filters[slug]=${id}&populate[SEO][populate][0]=Keywords`);
+    let dataContact = await getApiData('contact?populate=*');
+    let data1 = await getApiData(`blogs?filters[slug]=${id}&populate=*`);
+    let dataContent = await getApiData(`blogs?filters[slug]=${id}&populate[Content][populate][0]=Image`);
+    let dataBlog = await getApiData(`blogs?populate[blogs][populate][0]=Card_Image&filters[slug]=${id}`);
+    let formData = await getApiData(`contact-form-all`);
+    let dataLegal = await getApiData('legal?populate=*');
+    dataBlog.data = dataBlog.data[0]
+    dataSEO.data = dataSEO.data[0]
+    dataContent.data = dataContent.data[0]
+    dataSEOKeywords.data = dataSEOKeywords.data[0]
+    data1.data = data1.data[0]
+    res.render('blog', { dataSEO, dataSEOKeywords, dataContact, data1, dataBlog, dataLegal, strapi_base, base_url: base_url + req.path , formData, dataContent,flash: req.flash()});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 app.post('/submit', async (req, res) => {
   try {
     const data1 = req.body;
@@ -247,7 +289,9 @@ app.get('/*', async (req, res) => {
     let dataSEO = null;
     let dataSEOKeywords = [];
     let dataContact = await getApiData('contact?populate=*');
-    res.render('none', { dataSEO, dataSEOKeywords, dataContact, base_url: base_url + req.path, strapi_base, flash: req.flash()});
+    let dataLegal = await getApiData('legal?populate=*');
+    console.log('dataLegal:', dataLegal);
+    res.render('none', { dataSEO, dataSEOKeywords, dataContact, dataLegal, base_url: base_url + req.path, strapi_base, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');

@@ -1,0 +1,63 @@
+<%- include('partials/header' , {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav',
+        {dataContact}) %>
+
+        <header class="mx-6 md:mx-24 pt-2 md:pt-[2.25rem] mb-[2rem] md:mb-[6rem]">
+            <div class="md:h-[30rem] rounded-md mb-5 md:mb-0 w-full md:rounded-2xl overflow-hidden">
+                <img class="h-full w-full object-cover"
+                    src="<%= strapi_base+data1.data.attributes.Full_Image.data.attributes.url %>"
+                    alt="<%= strapi_base + data1.data.attributes.Full_Image.data.attributes.alternativeText%>">
+            </div>
+            <div class="text-xs md:text-base mb-[0.62rem] md:mb-2 text-[#969696]">
+                <%= new Date(data1.data.attributes.Date).toLocaleDateString('en-US', { month: 'long' , day: 'numeric' ,
+                    year: 'numeric' }) %>
+            </div>
+            <h1 class="md:text-[3.4375rem] text-[1.5rem] font-bold md:mb-[3.25rem] w-full mb-2 md:mt-7 md:text-[3.4375rem">
+                <%= data1.data.attributes.Blog_Heading %>
+            </h1>
+            <p class="md:text-[2rem]">
+                <%= data1.data.attributes.Intro_Para[0].children[0].text %>
+            </p>
+        </header>
+        <section class="mx-6 md:mx-24 flex flex-col items-stretch md:gap-[3.38rem]">
+            <% dataContent.data.attributes.Content.forEach(e=> { %>
+                <% if ((e.__component==='blog.sub-heading-para'||e.__component==='blog.half-para-half-image') && e.Image_On_Right===true) { %>
+                    <div class="md:grid-cols-5 mb-8 md:mb-0 md:gap-6 gap-3 grid items-center">
+                        <div class="md:col-span-3 col-span-1">
+
+                                <h2 class="md:text-[2.5rem] text-[1.5rem] font-bold mb-4"><%= e.Sub_Heading  %></h2>
+                            
+                            <p class="md:text-[1.5rem] mt-2"><%= e.Paragraph[0].children[0].text %></p>
+                        </div>
+                        <div class="md:col-span-2 rounded-[0.3rem] overflow-hidden md:rounded-[0.63rem]">
+                            <img src="<%= strapi_base + e.Image.data.attributes.url %>"
+                                alt="<%= e.Image.data.attributes.alternativeText %>" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                <% }else if (e.__component==='blog.sub-heading-para' ){%>
+                        <div class="md:grid-cols-5 mb-8 md:mb-0">
+                            <h3 class="md:col-span-3 mb-2 md:mb-4 text-[1rem] md:text-[2rem] font-bold">
+                                <%= e.Sub_Heading  %>
+                            </h3>
+                            <div class="md:text-[1.5rem] col-span-2">
+                                <%= e.Paragraph[0].children[0].text  %>
+                            </div>
+                        </div>
+                <% }else if ((e.__component==='blog.sub-heading-para'||e.__component==='blog.half-para-half-image') && e.Image_On_Right===false){%>
+                    <div class="md:grid-cols-5 mb-8 md:mb-0 md:gap-6 gap-3 grid items-center">
+                        <div class="md:col-span-2 rounded-[0.3rem] overflow-hidden md:rounded-[0.63rem]">
+                            <img src="<%= strapi_base + e.Image.data.attributes.url %>"
+                                alt="<%= e.Image.data.attributes.alternativeText %>" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="md:col-span-3 col-span-1">
+
+                        <h2 class="md:text-[2.5rem] text-[1.5rem] font-bold mb-4"><%= e.Sub_Heading  %></h2>
+                    
+                    <p class="md:text-[1.5rem] mt-2"><%= e.Paragraph[0].children[0].text %></p>
+                </div>
+                <%} %>
+            <% }); %>
+        </section>
+        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base , blogHeading:true}) %>
+            <%- include('partials/form.ejs',{heading:false, formData}) %>
+                <%- include('partials/footer' , {flash,dataLegal}) %>

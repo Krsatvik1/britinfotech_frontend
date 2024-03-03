@@ -15,23 +15,23 @@
             <div class="md:rounded-r-[1.25rem] rounded-b-[0.75rem] md:w-[60%] rounded-r-[0.75rem] overflow-hidden md:pb-0 pb-10 bg-white md:p-16">
                 <form id="form" class="space-y-10" method="POST" action="/contact/submit">
                     <div>
-                        <label for="name" class="block text-[#969696] text-sm">Name</label>
-                        <input id="name" name="contact[name]" type="text"
+                        <label for="name"  class="block text-[#969696] text-sm">Name</label>
+                        <input id="name" required name="contact[name]" type="text"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
                     </div>
                     <div>
                         <label for="company" class="block text-[#969696] text-sm">Company Name</label>
-                        <input id="company" name="contact[company]" type="text"
+                        <input id="company" required name="contact[company]" type="text"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
                     </div>
                     <div>
                         <label for="email" class="block text-[#969696] text-sm">Email</label>
-                        <input id="email" name="contact[email]" type="text"
+                        <input id="email" required name="contact[email]" type="email"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
                     </div>
                     <div>
                         <label for="mobile" class="block text-[#969696] text-sm">Phone Number</label>
-                        <input id="mobile" name="contact[mobile]" type="text"
+                        <input id="mobile" required name="contact[mobile]" type="tel"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
                     </div>
                     <div>
@@ -143,4 +143,4 @@
             </div>
         </section>
 
-        <%- include('partials/footer' , {flash}) %>
+        <%- include('partials/footer' , {flash,dataLegal}) %>

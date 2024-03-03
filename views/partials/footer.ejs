@@ -21,7 +21,7 @@
                 <a href="/services" class="inline-block py-2.5 hover:text-lightBlue">Services</a>
             </li>
             <li class="flex items-center">
-                <a href="/Insights" class="inline-block py-2.5 hover:text-lightBlue">Insights</a>
+                <a href="/insights" class="inline-block py-2.5 hover:text-lightBlue">insights</a>
             </li>
         </ul>
         <ul class="flex items-stretch  text-[1.25rem] md:order-3 order-2 gap-6 md:gap-12">
@@ -53,7 +53,7 @@
                     </svg></a>
             </li>
             <li class="inline-block">
-                <a href="/Insights" class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
+                <a href="/insights" class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
                         xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
                         fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -64,9 +64,9 @@
         </ul>
     </div>
     <div class="w-full font-crash text-xs md:text-xl font-medium flex justify-center items-center py-7">
-        <a class="block pr-2 md:pr-3">
+        <button onclick="openTerms()" class="block pr-2 md:pr-3">
             Terms & Conditions
-        </a>
+        </button >
         <p class="pl-2 md:pl-3 border-l-black border-l-[1px] text-black">© 2021 BritInfoTech. All rights reserved.</p>
     </div>
 </footer>
@@ -90,30 +90,69 @@
         </button>
     </div>
 </modal>
+<modal id="terms"
+    class="bg-[#D4E7EA] font-crash overflow-scroll rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-50 left-[1rem] bottom-[1rem] top-[1rem] right-[1rem] md:left-[1.88rem] md:bottom-[1.88rem] md:right-[1.88rem] md:top-[1.88rem] hidden">
+    <div class="flex justify-end">
+        <button onclick="closeTerms()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <h4 class="text-xl">Terms & Conditions</h4>
+    <% dataLegal.data.attributes.terms.forEach ((e)=>{%>
+        <p class="mx-2<% if (e.children[0].bold) { %>
+           font-bold 
+        <% } %>">
+            <%= e.children[0].text %>
+        </p>
+        <%}) %>
+            <h4 class="text-xl mt-10">Privacy Policy</h4>
+            <% dataLegal.data.attributes.privacy.forEach ((e)=>{%>
+                <p class="mx-2<% if (e.children[0].bold) { %>
+           font-bold 
+        <% } %>">
+                    <%= e.children[0].text %>
+                </p>
+                <%}) %>
+</modal>
 <% if (flash.success) { %>
     <div class="alert z-50 bg-green-300 fixed top-0 left-0 right-0 p-4 text-center">
         <%= flash.success %>
     </div>
-<% } %>
+    <% } %>
 
-<% if (flash.error) { %>
-    <div class="alert z-50 bg-red-300 fixed top-0 left-0 right-0 p-4 text-center">
-        <%= flash.error %>
-    </div>
-<% } %>
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-    var nav = document.querySelector("#navSide");
-function showNav() {
-  nav.classList.toggle("showNav");
-}
+        <% if (flash.error) { %>
+            <div class="alert z-50 bg-red-300 fixed top-0 left-0 right-0 p-4 text-center">
+                <%= flash.error %>
+            </div>
+            <% } %>
+                <script src="https://www.google.com/recaptcha/api.js"></script>
+                <script>
+                    var nav = document.querySelector("#navSide");
+                    function showNav() {
+                        nav.classList.toggle("showNav");
+                    }
 
-    function onSubmit(token) {
-        document.getElementById('form').submit();
-    }
-</script>
-<script src="/gsap/gsap.min.js"></script>
-<script src="/bundle.js"></script>
-</body>
+                    function onSubmit(token) {
+                        // Validate the form
+                        var form = document.getElementById('form');
+                        if (form.checkValidity()) {
+                            form.submit();
+                        } else {
+                            alert('Please fill the form corretly!');
+                        }
+                    }
+                    function closeTerms() {
+                        document.getElementById('terms').style.display = "none";
+                    }
+                    function openTerms() {
+                        document.getElementById('terms').style.display = "block";
+                    }
+                </script>
+                <script src="/gsap/gsap.min.js"></script>
+                <script src="/bundle.js"></script>
+                </body>
 
-</html>
+                </html>

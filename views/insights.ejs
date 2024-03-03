@@ -1,0 +1,43 @@
+<%- include('partials/header' , {dataSEO , dataSEOKeywords , strapi_base, base_url}) %> <%- include('partials/nav',
+        {dataContact}) %>
+
+        <header class="text-center mx-6 md:mx-24 pt-2 flex flex-col md:pt-[2.25rem] justify-center items-center">
+            <h1 class="md:text-header w-full mb-2 md:mt-7 text-[1.375rem]">
+                <%= data1.data.attributes.Heading %>
+            </h1>
+            <div class="w-[10rem] border-t-2 border-[#00E5BC] mb-4 md:mb-[6.25rem] md:block hidden"></div>
+            <div class="w-full flex flex-wrap gap-[0.62rem] md:gap-[1.88rem] justify-center">
+                <% data1.data.attributes.keywords.forEach(element=> { %>
+                    <div class="text-xs md:text-2xl leading-none py-1 px-3 md:px-4 md:py-3 text-center border-[1px] md:border-[2px] rounded-full border-[#0B669D]">
+                        <%= element.Tag %>
+                    </div>
+                    <% }); %>
+            </div>
+        </header>
+        <section class="mx-6 md:mx-24 mt-[1.95rem] md:mt-20 grid md:grid-cols-2 items-center md:gap-[1.2rem]">
+            <div class="overflow-hidden md:mb-0 mb-[1.38rem]">
+                <img class="md:rounded-[1.5rem] rounded-[1rem] h-full w-full block object-cover"
+                    src="<%=strapi_base+ dataFeatured.data.attributes.Featured_Article.data.attributes.Full_Image.data.attributes.url %>"
+                    alt="<%= dataFeatured.data.attributes.Featured_Article.data.attributes.Full_Image.data.attributes.url %>">
+            </div>
+            <div>
+                <div class="text-base mb-[0.62rem] md:mb-2 text-[#969696]">
+                    <%= new
+                        Date(dataFeatured.data.attributes.Featured_Article.data.attributes.Date).toLocaleDateString('en-US',
+                        { month: 'long' , day: 'numeric' , year: 'numeric' }) %>
+                </div>
+                <h2 class="text-xl font-bold md:mb-6 md:text-[2rem] leading-snug mb-[0.98rem]">
+                    <%= dataFeatured.data.attributes.Featured_Article.data.attributes.Card_Heading %>
+                </h2>
+                <p class="md:mt-7 mb-[0.62rem]">
+                    <%= dataFeatured.data.attributes.Featured_Article.data.attributes.Card_Brief %>
+                </p>
+                <a class="underline text-[#0B669D] md:mt-[1.8rem] block" href="/insights/<% dataFeatured.data.attributes.Featured_Article.data.attributes.slug %>">
+                    Read more
+                </a>
+            </div>
+        </section>
+        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base , blogHeading:true}) %>
+
+        <%- include('partials/form.ejs',{heading:false, formData}) %>
+            <%- include('partials/footer' , {flash,dataLegal}) %>

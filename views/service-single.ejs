@@ -39,7 +39,7 @@
             </div>
         </section>
         <section class="overflow-hidden relative">
-            <img class="w-full h-full object-cover block absolute bottom-0 top-0 " src="<%= strapi_base + data1.data.attributes.Service_Heading_Image.data.attributes.url %>"
+            <img class="w-full h-full object-cover block absolute bottom-0 top-0 " src="<%= strapi_base + data1.data.attributes.End_Para_Background.data.attributes.url %>"
             alt="<%= data1.data.attributes.End_Para_Background.data.attributes.alternativeText %>">
             <div class="mx-6 relative md:mx-24 z-10 py-4 md:py-20 text-white md:pr-64">
                 <h3 class="text-base md:text-[2.5rem] font-medium leading-snug mb-[0.69rem] md:mb-14">
@@ -55,6 +55,6 @@
         
         <%- include('partials/clients.ejs', {dataCompanies, strapi_base}) %>
         <%- include('partials/expectation.ejs' , {heading:true}) %>
-        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base}) %>
+        <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base,blogHeading:false}) %>
             <%- include('partials/form.ejs',{heading:false, formData}) %>
-            <%- include('partials/footer' , {flash}) %>
+            <%- include('partials/footer' , {flash,dataLegal}) %>
