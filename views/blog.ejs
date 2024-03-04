@@ -48,16 +48,16 @@
                             <img src="<%= strapi_base + e.Image.data.attributes.url %>"
                                 alt="<%= e.Image.data.attributes.alternativeText %>" class="w-full h-full object-cover">
                         </div>
-                    </div>
-                    <div class="md:col-span-3 col-span-1">
+                        <div class="md:col-span-3 col-span-1">
 
-                        <h2 class="md:text-[2.5rem] text-[1.5rem] font-bold mb-4"><%= e.Sub_Heading  %></h2>
-                    
-                    <p class="md:text-[1.5rem] mt-2"><%= e.Paragraph[0].children[0].text %></p>
-                </div>
+                            <h2 class="md:text-[2.5rem] text-[1.5rem] font-bold mb-4"><%= e.Sub_Heading  %></h2>
+                        
+                        <p class="md:text-[1.5rem] mt-2"><%= e.Paragraph[0].children[0].text %></p>
+                    </div>
+                    </div>
                 <%} %>
             <% }); %>
         </section>
         <%- include('partials/blogs-compenent.ejs', {dataBlog, strapi_base , blogHeading:true}) %>
             <%- include('partials/form.ejs',{heading:false, formData}) %>
-                <%- include('partials/footer' , {flash,dataLegal}) %>
+                <%- include('partials/footer' , {flash,dataLegal,dataSocial}) %>Social}) %>Social}) %>

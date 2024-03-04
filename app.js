@@ -138,13 +138,14 @@ app.get('/services/:id', async (req, res) => {
     let dataExpectation = await getApiData(`expection?populate=*`);
     let dataCompanies = await getApiData(`company-heading?populate[companies][populate][0]=Company_Logo`);
     let dataBlog = await getApiData(`services?populate[blogs][populate][0]=Card_Image&filters[slug]=${id}`);
+    let dataSocial = await getApiData('social?populate=*');
     let formData = await getApiData(`contact-form-all`);
     dataBlog.data = dataBlog.data[0]
     dataSEO.data = dataSEO.data[0]
     dataSEOKeywords.data = dataSEOKeywords.data[0]
     data1.data = data1.data[0]
     let dataLegal = await getApiData('legal?populate=*');
-    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, dataLegal, strapi_base, base_url: base_url + req.path , formData, flash: req.flash()});
+    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, dataLegal, strapi_base,dataSocial, base_url: base_url + req.path , formData, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -156,7 +157,8 @@ app.get('/contact', async (req, res) => {
     let dataSEOKeywords = await getApiData(`contact?populate[SEO][populate][0]=Keywords`);
     let data1 = await getApiData(`contact?populate=*`);
     let dataLegal = await getApiData('legal?populate=*');
-    res.render('contact', { dataSEO, dataSEOKeywords, data1, dataLegal, strapi_base, base_url: base_url + req.path, flash: req.flash()});
+    let dataSocial = await getApiData('social?populate=*');
+    res.render('contact', { dataSEO, dataSEOKeywords, data1, dataSocial,dataLegal, strapi_base, base_url: base_url + req.path, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -172,7 +174,8 @@ app.get('/insights', async (req, res) => {
     let dataBlog = await getApiData('blog-component?populate[blogs][populate][0]=Card_Image');
     let formData = await getApiData(`contact-form-all`);
     let dataLegal = await getApiData('legal?populate=*');
-    res.render('insights', { dataSEO, dataBlog, dataSEOKeywords, dataContact, data1, dataFeatured, dataLegal, strapi_base, formData, base_url: base_url + req.path, flash: req.flash()});
+    let dataSocial = await getApiData('social?populate=*');
+    res.render('insights', { dataSEO, dataBlog, dataSEOKeywords, dataContact, data1, dataFeatured, dataLegal, strapi_base,dataSocial, formData, base_url: base_url + req.path, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -188,13 +191,14 @@ app.get('/insights/:id', async (req, res) => {
     let dataContent = await getApiData(`blogs?filters[slug]=${id}&populate[Content][populate][0]=Image`);
     let dataBlog = await getApiData(`blogs?populate[blogs][populate][0]=Card_Image&filters[slug]=${id}`);
     let formData = await getApiData(`contact-form-all`);
+    let dataSocial = await getApiData('social?populate=*');
     let dataLegal = await getApiData('legal?populate=*');
     dataBlog.data = dataBlog.data[0]
     dataSEO.data = dataSEO.data[0]
     dataContent.data = dataContent.data[0]
     dataSEOKeywords.data = dataSEOKeywords.data[0]
     data1.data = data1.data[0]
-    res.render('blog', { dataSEO, dataSEOKeywords, dataContact, data1, dataBlog, dataLegal, strapi_base, base_url: base_url + req.path , formData, dataContent,flash: req.flash()});
+    res.render('blog', { dataSEO, dataSEOKeywords, dataContact, data1, dataBlog, dataLegal,dataSocial, strapi_base, base_url: base_url + req.path , formData, dataContent,flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -298,8 +302,9 @@ app.get('/*', async (req, res) => {
     let dataSEOKeywords = [];
     let dataContact = await getApiData('contact?populate=*');
     let dataLegal = await getApiData('legal?populate=*');
+    let dataSocial = await getApiData('social?populate=*');
     console.log('dataLegal:', dataLegal);
-    res.render('none', { dataSEO, dataSEOKeywords, dataContact, dataLegal, base_url: base_url + req.path, strapi_base, flash: req.flash()});
+    res.render('none', { dataSEO, dataSEOKeywords, dataContact, dataLegal,dataSocial, base_url: base_url + req.path, strapi_base, flash: req.flash()});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
