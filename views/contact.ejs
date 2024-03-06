@@ -18,26 +18,31 @@
                         <label for="name"  class="block text-[#969696] text-sm">Name</label>
                         <input id="name" required name="contact[name]" type="text"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                        <p class="text-red-500 opacity-0">Please enter corret value</p>
                     </div>
                     <div>
                         <label for="company" class="block text-[#969696] text-sm">Company Name</label>
-                        <input id="company" required name="contact[company]" type="text"
+                        <input id="company" name="contact[company]" type="text"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                            <p class="text-red-500 opacity-0">Please enter corret value</p>
                     </div>
                     <div>
                         <label for="email" class="block text-[#969696] text-sm">Email</label>
                         <input id="email" required name="contact[email]" type="email"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                            <p class="text-red-500 opacity-0">Please enter corret value</p>
                     </div>
                     <div>
                         <label for="mobile" class="block text-[#969696] text-sm">Phone Number</label>
-                        <input id="mobile" required name="contact[mobile]" type="tel"
+                        <input id="mobile" required name="contact[mobile]" type="tel" pattern="[+\d]*"
                             class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                            <p class="text-red-500 opacity-0">Please enter corret value</p>
                     </div>
                     <div>
                         <label for="message" class="block text-[#969696] text-sm">How can we help you?</label>
                         <textarea id="message" name="contact[message]" type="text"
                             class="w-full block border-b-[1px] h-32 active:outline-none border-black md:text-lg text-base"></textarea>
+                            <p class="text-red-500 opacity-0">Please enter corret value</p>
                     </div>
                     <div class="flex md:gap-6 gap-2">
                         <input type="checkbox" id="subscribe" name="contact[subscribe]"

@@ -8,12 +8,46 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const nodemailer = require('nodemailer');
 // Configuring environment variables
 dotenv.config();
 const strapi_base = process.env.STRAPI_URL_BASE;
 const base_url = process.env.BASE_URL;
+
 // Creating Express app
 const app = express();
+
+// Nodemailer function to send mail
+async function sendMail(data, type) {
+  // Create a nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: false, // Set secure to false if using port 587
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    }
+  });
+
+  // Define the email options
+  const mailOptions = {
+    from: 'website@britinfotech.com',
+    to: 'admin@britinfotech.com',
+    replyTo: data.email,
+    subject: `Email ${type}`,
+    text: JSON.stringify(data)
+  };
+
+  try {
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+  } catch (error) {
+    console.log('Error sending email:', error);
+  }
+}
+
 
 //create function to get api call path as a parameter and call a strapi api using axios. Also use auth token in header
 
@@ -227,7 +261,8 @@ app.post('/submit', async (req, res) => {
           Authorization: `Bearer ${process.env.STRAPI_TOKEN}`
         }
       });
-
+      data = {email: email}
+      sendMail(data, 'Contact Small Form');
       req.flash('success', 'Thanks for submitting'); // Set flash message
       res.redirect('back');
     } else {
@@ -244,7 +279,7 @@ app.post('/contact/submit', async (req, res) => {
   try {
     const data1 = req.body;
     const name = data1.contact.name;
-    const company = data1.contact.company;
+    const company = data1.contact.company ? data1.contact.company : "none";
     const email = data1.contact.email;
     const phone = data1.contact.mobile;
     const message = data1.contact.message;
@@ -273,8 +308,15 @@ app.post('/contact/submit', async (req, res) => {
           Authorization: `Bearer ${process.env.STRAPI_TOKEN}`
         }
       });
-      console.log(response.data); // Log the response from Strapi
-
+      data = {
+        "name": name,
+        "company": company,
+        "email": email,
+        "phone": phone,
+        "message": message,
+        "newsletter": newsletter === 'on' ? true : false
+      }
+      sendMail(data, 'Main Contact Form');
       req.flash('success', 'Thanks for submitting'); // Set flash message
       res.redirect('back');
     } else {

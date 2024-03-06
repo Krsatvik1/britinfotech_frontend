@@ -146,8 +146,9 @@
                     function onSubmit(token) {
                         // Validate the form
                         var form = document.getElementById('form');
+                        console.log(form.checkValidity());
                         if (form.checkValidity()) {
-                            form.submit();
+                            form.submit()
                         } else {
                             alert('Please fill the form corretly!');
                         }
@@ -158,6 +159,19 @@
                     function openTerms() {
                         document.getElementById('terms').style.display = "block";
                     }
+                    document.addEventListener('DOMContentLoaded', function() {
+                            var inputs = document.querySelectorAll('input');
+                            inputs.forEach(function(input) {
+                                input.addEventListener('invalid', function() {
+                                    var errorMessage = this.nextElementSibling;
+                                    errorMessage.style.opacity = '1';
+                                });
+                                input.addEventListener('input', function() {
+                                    var errorMessage = this.nextElementSibling;
+                                    errorMessage.style.opacity = '0';
+                                });
+                            });
+                        });
                 </script>
                 <script src="/gsap/gsap.min.js"></script>
                 <script src="/bundle.js"></script>
