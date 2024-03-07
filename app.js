@@ -262,7 +262,7 @@ app.post('/submit', async (req, res) => {
         }
       });
       data = {email: email}
-      sendMail(data, 'Contact Small Form');
+      await sendMail(data, 'Contact Small Form');
       req.flash('success', 'Thanks for submitting'); // Set flash message
       res.redirect('back');
     } else {
@@ -316,7 +316,7 @@ app.post('/contact/submit', async (req, res) => {
         "message": message,
         "newsletter": newsletter === 'on' ? true : false
       }
-      sendMail(data, 'Main Contact Form');
+      await sendMail(data, 'Main Contact Form');
       req.flash('success', 'Thanks for submitting'); // Set flash message
       res.redirect('back');
     } else {
