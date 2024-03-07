@@ -10,7 +10,7 @@
             <div
                 class="mt-14 md:mt-20 rounded-[0.4rem] md:rounded-[1.25rem] overflow-hidden h-[20rem] md:min-h-[40rem] header-img bg-slate-500 translate-y-full opacity-0">
                 <% if (data1.data.attributes.Landing_Image.data.attributes.ext === '.mp4' || data1.data.attributes.Landing_Image.data.attributes.ext === '.avi' || data1.data.attributes.Landing_Image.data.attributes.ext === '.mov' || data1.data.attributes.Landing_Image.data.attributes.ext === '.webM') { %>
-                    <video class="h-full w-full object-cover" autoplay muted loop>
+                    <video class="h-full w-full object-cover" playsinline autoplay muted loop>
                         <source src="<%= strapi_base %><%= data1.data.attributes.Landing_Image.data.attributes.url %>" type="video/mp4">
                         <!-- Add more source tags for other video formats if needed -->
                     </video>
