@@ -332,9 +332,6 @@ app.post('/contact/submit', async (req, res) => {
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send(`User-agent: *
-Disallow: /private/
-Disallow: /admin/
-Disallow: /secret-page.html
 Allow: /`);
 });
 // handle wildcard
