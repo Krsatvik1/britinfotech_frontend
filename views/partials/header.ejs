@@ -2,6 +2,13 @@
 <html lang="en" class="overflow-x-hidden">
 
 <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJXFNS4K');</script>
+    <!-- End Google Tag Manager -->
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta charset="UTF-8">
@@ -25,16 +32,12 @@
     <meta name="twitter:image" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.SEO_image && dataSEO.data.attributes.SEO.SEO_image.data && dataSEO.data.attributes.SEO.SEO_image.data.attributes && dataSEO.data.attributes.SEO.SEO_image.data.attributes.url) { %><%= strapi_base %><%= dataSEO.data.attributes.SEO.SEO_image.data.attributes.url %><% } %>">
     <meta name="twitter:card" content="<% if (dataSEO && dataSEO.data && dataSEO.data.attributes && dataSEO.data.attributes.SEO && dataSEO.data.attributes.SEO.Twitter_Card) { %><%= dataSEO.data.attributes.SEO.Twitter_Card %><% } %>">
     <link rel="stylesheet" href="/css/index.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQQXVGR3B5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-LQQXVGR3B5');
-    </script>
     <meta name="keywords" content="<% if (dataSEOKeywords && dataSEOKeywords.data && dataSEOKeywords.data.attributes && dataSEOKeywords.data.attributes.SEO && dataSEOKeywords.data.attributes.SEO.Keywords) { %><% dataSEOKeywords.data.attributes.SEO.Keywords.forEach((e)=>{ %> <%= e.Tag %> , <% }) %><% } %>">
     <meta name="author" content="BritInfoTech LTD.">
 </head>
 
 <body class="font-crash relative">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJXFNS4K"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
