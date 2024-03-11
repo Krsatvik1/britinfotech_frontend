@@ -334,6 +334,71 @@ app.get('/robots.txt', (req, res) => {
   res.send(`User-agent: *
 Allow: /`);
 });
+
+// Route for sitemap
+app.get('/sitemap.xml', async (req, res) => {
+  // Generate sitemap XML here
+   // Replace with your sitemap generation logic
+   try {
+    let dataBlog = await getApiData(`blogs?populate=*`);
+    let dataServices = await getApiData(`services?populate=*`);
+    let sitemapXml = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+       <loc>http://www.britinfotech.com/</loc>
+       <lastmod>2024-03-11</lastmod>
+       <changefreq>monthly</changefreq>
+       <priority>1.0</priority>
+    </url>
+    <url>
+       <loc>http://www.britinfotech.com/contact</loc>
+       <lastmod>2024-03-11</lastmod>
+       <changefreq>monthly</changefreq>
+       <priority>0.8</priority>
+    </url>
+    <url>
+       <loc>http://www.britinfotech.com/about</loc>
+       <lastmod>2024-03-11</lastmod>
+       <changefreq>monthly</changefreq>
+       <priority>0.8</priority>
+    </url>
+    <url>
+       <loc>http://www.britinfotech.com/services</loc>
+       <lastmod>2024-03-11</lastmod>
+       <changefreq>monthly</changefreq>
+       <priority>0.8</priority>
+    </url>
+    
+ `;
+ console.log(dataBlog)
+    let xmlDynamic = () => {
+      dataBlog.data.forEach(element => {
+        sitemapXml += `<url>
+        <loc>${base_url}/insights/${element.attributes.slug}</loc>
+        <lastmod>${element.attributes.updatedAt}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority></url>`
+      });
+      dataServices.data.forEach(element => {
+        sitemapXml += `<url>
+        <loc>${base_url}/services/${element.attributes.slug}</loc>
+        <lastmod>${element.attributes.updatedAt}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority></url>`
+      });
+    }
+    xmlDynamic();
+    sitemapXml += `</urlset>`
+    console.log(sitemapXml)
+    res.type('application/xml');
+    res.send(sitemapXml);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
+
+});
+
+
 // handle wildcard
 app.get('/*', async (req, res) => {
   try {
