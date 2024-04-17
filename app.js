@@ -23,7 +23,7 @@ async function sendMail(data, type) {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
-    secure: false, // Set secure to false if using port 587
+    secure: true, // Set secure to false if using port 587
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS
@@ -76,7 +76,13 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false, // Set to true if your site is served over HTTPS
+      sameSite: 'strict', // or 'lax'
+      httpOnly: true,
+      expires: new Date(Date.now() + 60 * 60 * 1000), // Prevents client-side JavaScript from accessing the cookie
+    }
   })
 );
 app.use(flash());
@@ -114,13 +120,16 @@ app.get('/', async (req, res) => {
     let dataCompanies = await getApiData('company-heading?populate[companies][populate][0]=Company_Logo');
     let dataSocial = await getApiData('social?populate=*');
     let dataLegal = await getApiData('legal?populate=*');
-
-    res.render('home', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    console.log(req.session.contactModalShown)
+    if (!req.session.contactModalShown) {
+      // If not, set it to true for this session
+      req.session.contactModalShown = false;
+    }
+    res.render('home', { showContactModal: !req.session.contactModalShown, dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
   }
-
 });
 app.get('/about', async (req, res) => {
   try {
@@ -135,8 +144,12 @@ app.get('/about', async (req, res) => {
     let dataExpectation = await getApiData('expection?populate=*');
     let dataLegal = await getApiData('legal?populate=*');
     //console log all the data in the console in a structured way
-
-    res.render('about', { dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataCompanies, dataSocial, dataEmployees, dataExpectation, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    if (!req.session.contactModalShown) {
+      // If not, set it to true for this session
+      req.session.contactModalShown = false;
+    }
+    res.render('about', { showContactModal: !req.session.contactModalShown,dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataCompanies, dataSocial, dataEmployees, dataExpectation, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+  
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -152,8 +165,13 @@ app.get('/services', async (req, res) => {
     let dataSocial = await getApiData('social?populate=*');
     let dataEmployees = await getApiData('employees-component?populate[employees][populate][0]=Profile_Pic');
     let dataLegal = await getApiData('legal?populate=*');
+    if (!req.session.contactModalShown) {
+      // If not, set it to true for this session
+      req.session.contactModalShown = false;
+    }
     //console log all the data in the console in a structured way
-    res.render('services', { dataSEO, dataSEOKeywords , dataContact, data1, dataServices, dataSocial, dataEmployees, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    res.render('services', { showContactModal: !req.session.contactModalShown,dataSEO, dataSEOKeywords , dataContact, data1, dataServices, dataSocial, dataEmployees, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+    
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -179,7 +197,12 @@ app.get('/services/:id', async (req, res) => {
     dataSEOKeywords.data = dataSEOKeywords.data[0]
     data1.data = data1.data[0]
     let dataLegal = await getApiData('legal?populate=*');
-    res.render('service-single', { dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, dataLegal, strapi_base,dataSocial, base_url: base_url + req.path , formData, flash: req.flash()});
+    if (!req.session.contactModalShown) {
+      // If not, set it to true for this session
+      req.session.contactModalShown = false;
+    }
+    res.render('service-single', { showContactModal: !req.session.contactModalShown,dataSEO, dataSEOKeywords, dataContact, data1, dataExpectation, dataBlog,dataCompanies, dataLegal, strapi_base,dataSocial, base_url: base_url + req.path , formData, flash: req.flash()});
+
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -209,7 +232,12 @@ app.get('/insights', async (req, res) => {
     let formData = await getApiData(`contact-form-all`);
     let dataLegal = await getApiData('legal?populate=*');
     let dataSocial = await getApiData('social?populate=*');
-    res.render('insights', { dataSEO, dataBlog, dataSEOKeywords, dataContact, data1, dataFeatured, dataLegal, strapi_base,dataSocial, formData, base_url: base_url + req.path, flash: req.flash()});
+    if (!req.session.contactModalShown) {
+      // If not, set it to true for this session
+      req.session.contactModalShown = false;
+    }
+    res.render('insights', { showContactModal: !req.session.contactModalShown,dataSEO, dataBlog, dataSEOKeywords, dataContact, data1, dataFeatured, dataLegal, strapi_base,dataSocial, formData, base_url: base_url + req.path, flash: req.flash()});
+    
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -232,7 +260,12 @@ app.get('/insights/:id', async (req, res) => {
     dataContent.data = dataContent.data[0]
     dataSEOKeywords.data = dataSEOKeywords.data[0]
     data1.data = data1.data[0]
-    res.render('blog', { dataSEO, dataSEOKeywords, dataContact, data1, dataBlog, dataLegal,dataSocial, strapi_base, base_url: base_url + req.path , formData, dataContent,flash: req.flash()});
+    if (!req.session.contactModalShown) {
+      // If not, set it to true for this session
+      req.session.contactModalShown = false;
+    }
+    res.render('blog', { showContactModal: !req.session.contactModalShown,dataSEO, dataSEOKeywords, dataContact, data1, dataBlog, dataLegal,dataSocial, strapi_base, base_url: base_url + req.path , formData, dataContent,flash: req.flash()});
+    
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');
@@ -263,7 +296,7 @@ app.post('/submit', async (req, res) => {
       });
       data = {email: email}
       await sendMail(data, 'Contact Small Form');
-      req.flash('success', 'Thanks for submitting'); // Set flash message
+      req.flash('success', 'Thanks for submitting! We will reach you soon.'); // Set flash message
       res.redirect('back');
     } else {
       req.flash('error', 'Failed to verify reCAPTCHA'); // Set flash message
@@ -317,7 +350,7 @@ app.post('/contact/submit', async (req, res) => {
         "newsletter": newsletter === 'on' ? true : false
       }
       await sendMail(data, 'Main Contact Form');
-      req.flash('success', 'Thanks for submitting'); // Set flash message
+      req.flash('success', 'Thanks for submitting! We will reach you soon.'); // Set flash message
       res.redirect('back');
     } else {
       req.flash('error', 'Failed to verify reCAPTCHA'); // Set flash message
@@ -329,6 +362,10 @@ app.post('/contact/submit', async (req, res) => {
     res.redirect('back');
   }
 });
+app.post('/set-contact-modal-shown', (req, res) => {
+  req.session.contactModalShown = true;
+  res.sendStatus(200);
+ });
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send(`User-agent: *

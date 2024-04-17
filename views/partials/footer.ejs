@@ -78,28 +78,10 @@
         <p class="pl-2 md:pl-3 border-l-black border-l-[1px] text-black">© 2021 BritInfoTech. All rights reserved.</p>
     </div>
 </footer>
-<modal
-    class="bg-[#D4E7EA] max-w-xs md:max-w-lg font-crash rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-50 left-[1rem] bottom-[1rem] md:left-[1.88rem] md:bottom-[1.88rem] hidden">
-    <h3 class="text-base md:text-2xl font-medium">
-        We value your Privacy and Consent!
-    </h3>
-    <p class="text-[0.625rem] md:text-base leading-snug mt-2">
-        We use essential cookies to make our site work. By clicking “Accept,” you agree to our website's cookie use as
-        described in our Cookie Policy. You can change your cookie settings at any time by clicking “Preferences.”
-    </p>
-    <div class="flex gap-[2.87rem] md:gap-12 mt-4 md:mt-6 font-medium justify-center">
-        <button
-            class="w-20 md:w-[13.3rem] rounded-full md:mt-5 flex basis-20 md:basis-[13.3rem] justify-center items-center text-[0.6rem] md:text-xl bg-darkBlue text-white py-3 md:py-4 leading-none">
-            <p>Accept</p>
-        </button>
-        <button
-            class="w-20 md:w-[13.3rem] rounded-full md:mt-5 flex basis-20 md:basis-[13.3rem] justify-center items-center text-[0.6rem] md:text-xl border-darkBlue border-[2px] text-darkBlue py-3 md:py-4 leading-none">
-            <p>Reject</p>
-        </button>
-    </div>
-</modal>
+
+
 <modal id="terms"
-    class="bg-[#D4E7EA] font-crash overflow-scroll rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-50 left-[1rem] bottom-[1rem] top-[1rem] right-[1rem] md:left-[1.88rem] md:bottom-[1.88rem] md:right-[1.88rem] md:top-[1.88rem] hidden">
+    class="bg-[#D4E7EA] font-crash overflow-scroll rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-[80] left-[1rem] bottom-[1rem] top-[1rem] right-[1rem] md:left-[1.88rem] md:bottom-[1.88rem] md:right-[1.88rem] md:top-[1.88rem] hidden">
     <div class="flex justify-end">
         <button onclick="closeTerms()">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none"
@@ -125,10 +107,165 @@
                 </p>
                 <%}) %>
 </modal>
-<% if (flash.success) { %>
-    <div class="alert z-50 bg-green-300 fixed top-0 left-0 right-0 p-4 text-center">
-        <%= flash.success %>
+<modal id="privacy"
+    class="bg-[#D4E7EA] max-w-xs md:max-w-lg font-crash rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-50 left-[1rem] bottom-[1rem] md:left-[1.88rem] md:bottom-[1.88rem]">
+    <h3 class="text-base md:text-2xl font-medium">
+        We value your Privacy and Consent!
+    </h3>
+    <p class="text-[0.625rem] md:text-base leading-snug mt-2">
+        We use essential cookies to make our site work. By clicking “Accept,” you agree to our website's cookie use as
+        described in our Cookie Policy. You can change your cookie settings at any time by clicking “Read More.”
+    </p>
+    <button onclick="openTerms()">
+        <p class="text-[0.625rem] md:text-base underline mt-2">
+            Read More
+        </p>
+    </button>
+    <div class="flex gap-[2.87rem] md:gap-12 mt-4 md:mt-6 font-medium justify-center">
+        <button id="accept-privacy"
+            class="w-20 md:w-[13.3rem] rounded-full md:mt-5 flex basis-20 md:basis-[13.3rem] justify-center items-center text-[0.6rem] md:text-xl bg-darkBlue text-white py-3 md:py-4 leading-none">
+            <p>Accept</p>
+        </button>
+        <button id="reject-privacy"
+            class="w-20 md:w-[13.3rem] rounded-full md:mt-5 flex basis-20 md:basis-[13.3rem] justify-center items-center text-[0.6rem] md:text-xl border-darkBlue border-[2px] text-darkBlue py-3 md:py-4 leading-none">
+            <p>Reject</p>
+        </button>
     </div>
+    <script>
+        // Function to show the privacy modal
+        function showPrivacyModal() {
+            document.getElementById('privacy').style.display = 'block';
+        }
+    
+        // Function to handle the user's consent action
+        function handleConsent() {
+            // Hide the privacy modal
+            document.getElementById('privacy').style.display = 'none';
+    
+            // Update the GTM dataLayer with the user's consent preferences
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('consent', 'update', {
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'ad_storage': 'granted',
+                'analytics_storage': 'granted',
+            });
+    
+            // Store the user's consent in localStorage so you don't show the modal again
+            localStorage.setItem('privacyConsent', 'true');
+        }
+    
+        // Check if the user has already given their consent
+        if (!localStorage.getItem('privacyConsent')) {
+            // If the user hasn't given their consent yet, show the privacy modal
+            showPrivacyModal();
+        }
+    
+        // Add an event listener to the accept button
+        document.getElementById('accept-privacy').addEventListener('click', function() {
+            // When the user clicks the accept button, handle their consent
+            handleConsent();
+        });
+        document.getElementById('reject-privacy').addEventListener('click', function() {
+            // When the user clicks the accept button, handle their consent
+            document.getElementById("privacy").style.display = 'none';
+        });
+    </script>
+</modal>
+<% if (showContactModal) { %>
+<modal class="Contact-modal opacity-0 hidden fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20 z-20 justify-center items-center">
+    <div class="md:rounded-[1.25rem] md:w-[60%] rounded-r-[0.75rem] overflow-hidden md:pb-16 pb-10 bg-white md:p-16">
+        <div class="">
+            <h3 class="text-2xl md:text-4xl font-medium mb-10">Let's Talk</h3>
+        </div>
+        <form id="form" class="grid gap-5 grid-cols-2" method="POST" action="/contact/submit">
+            <div>
+                <label for="name"  class="block text-[#969696] text-sm">Name*</label>
+                <input id="name" required name="contact[name]" type="text"
+                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                <p class="text-red-500 opacity-0">Please enter corret value</p>
+            </div>
+            <div>
+                <label for="company" class="block text-[#969696] text-sm">Company Name</label>
+                <input id="company" name="contact[company]" type="text"
+                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+            </div>
+            <div>
+                <label for="email" class="block text-[#969696] text-sm">Email*</label>
+                <input id="email" required name="contact[email]" type="email"
+                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+            </div>
+            <div>
+                <label for="mobile" class="block text-[#969696] text-sm">Phone Number*</label>
+                <input id="mobile" required name="contact[mobile]" type="tel" pattern="[+\d]*"
+                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+            </div>
+            <div>
+                <label for="message" class="block text-[#969696] text-sm">How can we help you?</label>
+                <textarea id="message" name="contact[message]" type="text"
+                    class="w-full block border-b-[1px] h-32 active:outline-none border-black md:text-lg text-base"></textarea>
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+            </div>
+            <div class="flex md:gap-6 gap-2">
+                <input type="checkbox" id="subscribe" name="contact[subscribe]"
+                    class="border-b-[1px] active:outline-none border-black w-6 h-6" />
+                <label class="block md:text-base text-sm font-medium align-middle" for="subscribe">Subcribe to our newsletter for updates</label>
+            </div>
+            <div>
+                <button data-sitekey="6Ldez3UpAAAAAGX-faudz3vKoV4dI46MDIXFSKpI"
+                data-callback='onSubmit'
+                data-action='submit' class="g-recaptcha  rounded-full btn-30 text-center flex justify-center items-center h-12 w-44 font-normal">
+                    <p class="text-container basis-full"><span class="text">Let's Talk</span></p>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="close-contact" class="h-full w-full absolute">
+         
+    </div>
+</modal>
+<script>
+    setTimeout(() => {
+        document.querySelector('.Contact-modal').style.display = 'flex';
+        document.querySelector('.Contact-modal').style.opacity = '1';
+    }, 6000);
+    fetch('/set-contact-modal-shown', { method: 'POST' });
+
+    document.getElementById('close-contact').addEventListener('click', function() {
+        document.querySelector('.Contact-modal').style.display = 'none';
+    });
+</script>
+<% } %>
+<% if (flash.success) { %>
+    <div id="success" class="alert flex justify-center items-center z-50  fixed top-0  left-0 right-0 bottom-0 p-4 text-center">
+        <div class="bg-green-300 flex justify-center items-center w-3/4 md:w-1/4 h-1/4 md:h-1/4">
+            <div class="w-1/2">
+                <%= flash.success %>
+            </div>
+        </div>
+    </div> 
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if the success message is already present
+        if (document.getElementById('success')) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'formSubmissionSuccess'
+            });
+        }
+    });
+        document.getElementById('success').addEventListener('click', function() {
+            this.style.display = 'none';
+        });
+        setTimeout(() => {
+            document.getElementById('success').style.display = 'none';
+        }, 3000);
+    </script>
     <% } %>
 
         <% if (flash.error) { %>
@@ -168,7 +305,9 @@
                                 });
                                 input.addEventListener('input', function() {
                                     var errorMessage = this.nextElementSibling;
-                                    errorMessage.style.opacity = '0';
+                                    if (errorMessage.tagName != 'LABEL') {
+                                        errorMessage.style.opacity = '0';   
+                                    }
                                 });
                             });
                         });
