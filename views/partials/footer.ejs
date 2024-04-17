@@ -25,50 +25,58 @@
             </li>
         </ul>
         <ul class="flex items-stretch  text-[1.25rem] md:order-3 order-2 gap-6 md:gap-12">
-            <% if (dataSocial.data.attributes.Facebook!=="none") { %>   
-            <li class="inline-block">
-                <a rel="nofollow" href="https://www.facebook.com/<%= dataSocial.data.attributes.Facebook %>" class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
-                        xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
-                        fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M6 24C6 32.9 12.5 40.3 21 41.8L21.1003 41.7197C21.0669 41.7133 21.0334 41.7067 21 41.7V29H16.5V24H21V20C21 15.5 23.9 13 28 13C29.3 13 30.7 13.2 32 13.4V18H29.7C27.5 18 27 19.1 27 20.5V24H31.8L31 29H27V41.7C26.9666 41.7067 26.9331 41.7133 26.8997 41.7197L27 41.8C35.5 40.3 42 32.9 42 24C42 14.1 33.9 6 24 6C14.1 6 6 14.1 6 24Z"
-                            fill="white" />
-                    </svg></a>
-            </li>
-            <% } %>
-            <% if (dataSocial.data.attributes.Instagram!=="none") { %>
-            <li class="inline-block">
-                <a rel="nofollow" href="https://www.instagram.com/<%= dataSocial.data.attributes.Instagram %>" class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
-                        xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
-                        fill="none">
-                        <path
-                            d="M24.0008 6.54688C19.2605 6.54688 18.6656 6.5676 16.8039 6.65233C14.9458 6.73742 13.6774 7.0316 12.5677 7.46324C11.4197 7.90906 10.4459 8.50542 9.47574 9.47597C8.50487 10.4461 7.90852 11.42 7.46126 12.5676C7.02855 13.6778 6.73401 14.9465 6.65038 16.804C6.56711 18.6658 6.54529 19.2611 6.54529 24.0014C6.54529 28.7418 6.56638 29.3349 6.65074 31.1967C6.73619 33.0549 7.03036 34.3232 7.46162 35.4331C7.90779 36.5811 8.50414 37.5549 9.47465 38.5251C10.4444 39.496 11.4182 40.0938 12.5655 40.5396C13.676 40.9712 14.9447 41.2654 16.8024 41.3505C18.6642 41.4352 19.2587 41.456 23.9986 41.456C28.7392 41.456 29.3322 41.4352 31.194 41.3505C33.0521 41.2654 34.3219 40.9712 35.4324 40.5396C36.58 40.0938 37.5523 39.496 38.5221 38.5251C39.493 37.5549 40.0894 36.5811 40.5366 35.4334C40.9657 34.3232 41.2602 33.0545 41.3475 31.1971C41.4311 29.3352 41.453 28.7418 41.453 24.0014C41.453 19.2611 41.4311 18.6661 41.3475 16.8043C41.2602 14.9461 40.9657 13.6778 40.5366 12.568C40.0894 11.42 39.493 10.4461 38.5221 9.47597C37.5513 8.50506 36.5804 7.90869 35.4313 7.46324C34.3186 7.0316 33.0496 6.73742 31.1915 6.65233C29.3297 6.5676 28.737 6.54688 23.9953 6.54688H24.0008ZM22.435 9.69233C22.8997 9.6916 23.4182 9.69233 24.0008 9.69233C28.661 9.69233 29.2133 9.70906 31.0536 9.79269C32.7554 9.87051 33.679 10.1549 34.2943 10.3938C35.1088 10.7101 35.6895 11.0883 36.3 11.6992C36.9109 12.3101 37.2891 12.892 37.6062 13.7065C37.8451 14.3211 38.1298 15.2447 38.2072 16.9465C38.2909 18.7865 38.3091 19.3392 38.3091 23.9974C38.3091 28.6556 38.2909 29.2083 38.2072 31.0483C38.1294 32.7501 37.8451 33.6738 37.6062 34.2883C37.2898 35.1029 36.9109 35.6829 36.3 36.2934C35.6891 36.9043 35.1091 37.2825 34.2943 37.5989C33.6797 37.8389 32.7554 38.1225 31.0536 38.2003C29.2137 38.284 28.661 38.3021 24.0008 38.3021C19.3402 38.3021 18.7878 38.284 16.9479 38.2003C15.2461 38.1218 14.3225 37.8374 13.7069 37.5985C12.8924 37.2821 12.3106 36.904 11.6997 36.2931C11.0888 35.6821 10.7106 35.1018 10.3935 34.2869C10.1546 33.6723 9.86991 32.7487 9.79246 31.0469C9.70883 29.2069 9.6921 28.6541 9.6921 23.9931C9.6921 19.332 9.70883 18.7821 9.79246 16.9421C9.87028 15.2403 10.1546 14.3167 10.3935 13.7014C10.7099 12.8869 11.0888 12.3051 11.6997 11.6941C12.3106 11.0832 12.8924 10.7051 13.7069 10.388C14.3221 10.148 15.2461 9.86433 16.9479 9.78615C18.558 9.71342 19.182 9.6916 22.435 9.68797V9.69233ZM33.3176 12.5905C32.1612 12.5905 31.2231 13.5276 31.2231 14.6843C31.2231 15.8407 32.1612 16.7789 33.3176 16.7789C34.4739 16.7789 35.4121 15.8407 35.4121 14.6843C35.4121 13.528 34.4739 12.5898 33.3176 12.5898V12.5905ZM24.0008 15.0378C19.0507 15.0378 15.0374 19.0512 15.0374 24.0014C15.0374 28.9516 19.0507 32.9632 24.0008 32.9632C28.9508 32.9632 32.9627 28.9516 32.9627 24.0014C32.9627 19.0512 28.9504 15.0378 24.0004 15.0378H24.0008ZM24.0008 18.1832C27.2138 18.1832 29.8188 20.788 29.8188 24.0014C29.8188 27.2145 27.2138 29.8196 24.0008 29.8196C20.7874 29.8196 18.1828 27.2145 18.1828 24.0014C18.1828 20.788 20.7874 18.1832 24.0008 18.1832Z"
-                            fill="white" />
-                    </svg></a>
-            </li>
-            <% } %>
-            <% if (dataSocial.data.attributes.Linkedin!=="none") { %>
-            <li class="inline-block">
-                <a rel="nofollow" href="https://www.linkedin.com/<%= dataSocial.data.attributes.Linkedin %>" class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
-                        xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
-                        fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M9.41333 7C8.08048 7 7 8.08048 7 9.41333V38.5866C7 39.9194 8.08049 40.9999 9.41333 40.9999H38.5867C39.9195 40.9999 41 39.9194 41 38.5866V9.41333C41 8.08048 39.9195 7 38.5867 7H9.41333ZM14.6314 17.5587C16.2604 17.5587 17.5809 16.2382 17.5809 14.6092C17.5809 12.9803 16.2604 11.6597 14.6314 11.6597C13.0025 11.6597 11.6819 12.9803 11.6819 14.6092C11.6819 16.2382 13.0025 17.5587 14.6314 17.5587ZM20.2822 19.7385H25.1704V21.9778C25.1704 21.9778 26.4969 19.3248 30.1061 19.3248C33.3257 19.3248 35.9928 20.9109 35.9928 25.7452V35.9395H30.9271V26.9805C30.9271 24.1287 29.4046 23.815 28.2444 23.815C25.8367 23.815 25.4245 25.8919 25.4245 27.3525V35.9395H20.2822V19.7385ZM17.2026 19.7385H12.0603V35.9395H17.2026V19.7385Z"
-                            fill="white" />
-                    </svg></a>
-            </li>
-            <% } %>
-            <% if (dataSocial.data.attributes.Twitter!=="none") { %>
-            <li class="inline-block">
-                <a rel="nofollow" href="https://twitter.com/<%= dataSocial.data.attributes.Twitter %>" class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
-                        xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
-                        fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M39.5435 16.1753C39.5571 16.5251 39.5616 16.8747 39.5616 17.2245C39.5616 27.8289 32.1019 40.071 18.4607 40.071C14.2704 40.071 10.374 38.7355 7.09106 36.462C7.67138 36.5256 8.26074 36.5734 8.85915 36.5734C12.3335 36.5734 15.5335 35.2854 18.0718 33.1231C14.8266 33.0754 12.0863 30.7383 11.1412 27.5586C11.5949 27.654 12.0622 27.7018 12.54 27.7018C13.2138 27.7018 13.8679 27.6066 14.495 27.4158C11.099 26.6844 8.54111 23.4412 8.54111 19.546C8.54111 19.4983 8.54111 19.4823 8.54111 19.4505C9.54196 20.0388 10.6875 20.4043 11.9039 20.452C9.91124 19.0052 8.60137 16.5409 8.60137 13.7587C8.60137 12.296 8.96613 10.9128 9.60825 9.72036C13.265 14.5854 18.7321 17.781 24.8955 18.1149C24.7688 17.5266 24.704 16.9068 24.704 16.2867C24.704 11.851 28.0246 8.25781 32.1215 8.25781C34.2543 8.25781 36.1807 9.22777 37.5327 10.7858C39.2254 10.4361 40.8111 9.76837 42.2461 8.84625C41.6899 10.7223 40.5157 12.2959 38.9812 13.2816C40.4825 13.0909 41.9145 12.6619 43.2424 12.026C42.2461 13.6317 40.992 15.0465 39.5435 16.1753Z"
-                            fill="white" />
-                    </svg></a>
-            </li>
-            <% } %>
+            <% if (dataSocial.data.attributes.Facebook!=="none" ) { %>
+                <li class="inline-block">
+                    <a rel="nofollow" href="https://www.facebook.com/<%= dataSocial.data.attributes.Facebook %>"
+                        class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
+                            xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
+                            fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 24C6 32.9 12.5 40.3 21 41.8L21.1003 41.7197C21.0669 41.7133 21.0334 41.7067 21 41.7V29H16.5V24H21V20C21 15.5 23.9 13 28 13C29.3 13 30.7 13.2 32 13.4V18H29.7C27.5 18 27 19.1 27 20.5V24H31.8L31 29H27V41.7C26.9666 41.7067 26.9331 41.7133 26.8997 41.7197L27 41.8C35.5 40.3 42 32.9 42 24C42 14.1 33.9 6 24 6C14.1 6 6 14.1 6 24Z"
+                                fill="white" />
+                        </svg></a>
+                </li>
+                <% } %>
+                    <% if (dataSocial.data.attributes.Instagram!=="none" ) { %>
+                        <li class="inline-block">
+                            <a rel="nofollow"
+                                href="https://www.instagram.com/<%= dataSocial.data.attributes.Instagram %>"
+                                class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
+                                    xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12"
+                                    viewBox="0 0 48 48" fill="none">
+                                    <path
+                                        d="M24.0008 6.54688C19.2605 6.54688 18.6656 6.5676 16.8039 6.65233C14.9458 6.73742 13.6774 7.0316 12.5677 7.46324C11.4197 7.90906 10.4459 8.50542 9.47574 9.47597C8.50487 10.4461 7.90852 11.42 7.46126 12.5676C7.02855 13.6778 6.73401 14.9465 6.65038 16.804C6.56711 18.6658 6.54529 19.2611 6.54529 24.0014C6.54529 28.7418 6.56638 29.3349 6.65074 31.1967C6.73619 33.0549 7.03036 34.3232 7.46162 35.4331C7.90779 36.5811 8.50414 37.5549 9.47465 38.5251C10.4444 39.496 11.4182 40.0938 12.5655 40.5396C13.676 40.9712 14.9447 41.2654 16.8024 41.3505C18.6642 41.4352 19.2587 41.456 23.9986 41.456C28.7392 41.456 29.3322 41.4352 31.194 41.3505C33.0521 41.2654 34.3219 40.9712 35.4324 40.5396C36.58 40.0938 37.5523 39.496 38.5221 38.5251C39.493 37.5549 40.0894 36.5811 40.5366 35.4334C40.9657 34.3232 41.2602 33.0545 41.3475 31.1971C41.4311 29.3352 41.453 28.7418 41.453 24.0014C41.453 19.2611 41.4311 18.6661 41.3475 16.8043C41.2602 14.9461 40.9657 13.6778 40.5366 12.568C40.0894 11.42 39.493 10.4461 38.5221 9.47597C37.5513 8.50506 36.5804 7.90869 35.4313 7.46324C34.3186 7.0316 33.0496 6.73742 31.1915 6.65233C29.3297 6.5676 28.737 6.54688 23.9953 6.54688H24.0008ZM22.435 9.69233C22.8997 9.6916 23.4182 9.69233 24.0008 9.69233C28.661 9.69233 29.2133 9.70906 31.0536 9.79269C32.7554 9.87051 33.679 10.1549 34.2943 10.3938C35.1088 10.7101 35.6895 11.0883 36.3 11.6992C36.9109 12.3101 37.2891 12.892 37.6062 13.7065C37.8451 14.3211 38.1298 15.2447 38.2072 16.9465C38.2909 18.7865 38.3091 19.3392 38.3091 23.9974C38.3091 28.6556 38.2909 29.2083 38.2072 31.0483C38.1294 32.7501 37.8451 33.6738 37.6062 34.2883C37.2898 35.1029 36.9109 35.6829 36.3 36.2934C35.6891 36.9043 35.1091 37.2825 34.2943 37.5989C33.6797 37.8389 32.7554 38.1225 31.0536 38.2003C29.2137 38.284 28.661 38.3021 24.0008 38.3021C19.3402 38.3021 18.7878 38.284 16.9479 38.2003C15.2461 38.1218 14.3225 37.8374 13.7069 37.5985C12.8924 37.2821 12.3106 36.904 11.6997 36.2931C11.0888 35.6821 10.7106 35.1018 10.3935 34.2869C10.1546 33.6723 9.86991 32.7487 9.79246 31.0469C9.70883 29.2069 9.6921 28.6541 9.6921 23.9931C9.6921 19.332 9.70883 18.7821 9.79246 16.9421C9.87028 15.2403 10.1546 14.3167 10.3935 13.7014C10.7099 12.8869 11.0888 12.3051 11.6997 11.6941C12.3106 11.0832 12.8924 10.7051 13.7069 10.388C14.3221 10.148 15.2461 9.86433 16.9479 9.78615C18.558 9.71342 19.182 9.6916 22.435 9.68797V9.69233ZM33.3176 12.5905C32.1612 12.5905 31.2231 13.5276 31.2231 14.6843C31.2231 15.8407 32.1612 16.7789 33.3176 16.7789C34.4739 16.7789 35.4121 15.8407 35.4121 14.6843C35.4121 13.528 34.4739 12.5898 33.3176 12.5898V12.5905ZM24.0008 15.0378C19.0507 15.0378 15.0374 19.0512 15.0374 24.0014C15.0374 28.9516 19.0507 32.9632 24.0008 32.9632C28.9508 32.9632 32.9627 28.9516 32.9627 24.0014C32.9627 19.0512 28.9504 15.0378 24.0004 15.0378H24.0008ZM24.0008 18.1832C27.2138 18.1832 29.8188 20.788 29.8188 24.0014C29.8188 27.2145 27.2138 29.8196 24.0008 29.8196C20.7874 29.8196 18.1828 27.2145 18.1828 24.0014C18.1828 20.788 20.7874 18.1832 24.0008 18.1832Z"
+                                        fill="white" />
+                                </svg></a>
+                        </li>
+                        <% } %>
+                            <% if (dataSocial.data.attributes.Linkedin!=="none" ) { %>
+                                <li class="inline-block">
+                                    <a rel="nofollow"
+                                        href="https://www.linkedin.com/<%= dataSocial.data.attributes.Linkedin %>"
+                                        class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
+                                            xmlns="http://www.w3.org/2000/svg" class="block w-6 h-6 md:w-12 md:h-12"
+                                            viewBox="0 0 48 48" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M9.41333 7C8.08048 7 7 8.08048 7 9.41333V38.5866C7 39.9194 8.08049 40.9999 9.41333 40.9999H38.5867C39.9195 40.9999 41 39.9194 41 38.5866V9.41333C41 8.08048 39.9195 7 38.5867 7H9.41333ZM14.6314 17.5587C16.2604 17.5587 17.5809 16.2382 17.5809 14.6092C17.5809 12.9803 16.2604 11.6597 14.6314 11.6597C13.0025 11.6597 11.6819 12.9803 11.6819 14.6092C11.6819 16.2382 13.0025 17.5587 14.6314 17.5587ZM20.2822 19.7385H25.1704V21.9778C25.1704 21.9778 26.4969 19.3248 30.1061 19.3248C33.3257 19.3248 35.9928 20.9109 35.9928 25.7452V35.9395H30.9271V26.9805C30.9271 24.1287 29.4046 23.815 28.2444 23.815C25.8367 23.815 25.4245 25.8919 25.4245 27.3525V35.9395H20.2822V19.7385ZM17.2026 19.7385H12.0603V35.9395H17.2026V19.7385Z"
+                                                fill="white" />
+                                        </svg></a>
+                                </li>
+                                <% } %>
+                                    <% if (dataSocial.data.attributes.Twitter!=="none" ) { %>
+                                        <li class="inline-block">
+                                            <a rel="nofollow"
+                                                href="https://twitter.com/<%= dataSocial.data.attributes.Twitter %>"
+                                                class="flex items-center py-2.5 h-full hover:text-lightBlue"><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="block w-6 h-6 md:w-12 md:h-12" viewBox="0 0 48 48"
+                                                    fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M39.5435 16.1753C39.5571 16.5251 39.5616 16.8747 39.5616 17.2245C39.5616 27.8289 32.1019 40.071 18.4607 40.071C14.2704 40.071 10.374 38.7355 7.09106 36.462C7.67138 36.5256 8.26074 36.5734 8.85915 36.5734C12.3335 36.5734 15.5335 35.2854 18.0718 33.1231C14.8266 33.0754 12.0863 30.7383 11.1412 27.5586C11.5949 27.654 12.0622 27.7018 12.54 27.7018C13.2138 27.7018 13.8679 27.6066 14.495 27.4158C11.099 26.6844 8.54111 23.4412 8.54111 19.546C8.54111 19.4983 8.54111 19.4823 8.54111 19.4505C9.54196 20.0388 10.6875 20.4043 11.9039 20.452C9.91124 19.0052 8.60137 16.5409 8.60137 13.7587C8.60137 12.296 8.96613 10.9128 9.60825 9.72036C13.265 14.5854 18.7321 17.781 24.8955 18.1149C24.7688 17.5266 24.704 16.9068 24.704 16.2867C24.704 11.851 28.0246 8.25781 32.1215 8.25781C34.2543 8.25781 36.1807 9.22777 37.5327 10.7858C39.2254 10.4361 40.8111 9.76837 42.2461 8.84625C41.6899 10.7223 40.5157 12.2959 38.9812 13.2816C40.4825 13.0909 41.9145 12.6619 43.2424 12.026C42.2461 13.6317 40.992 15.0465 39.5435 16.1753Z"
+                                                        fill="white" />
+                                                </svg></a>
+                                        </li>
+                                        <% } %>
         </ul>
     </div>
     <div class="w-full font-crash text-xs md:text-xl font-medium flex justify-center items-center py-7">
@@ -108,7 +116,7 @@
                 <%}) %>
 </modal>
 <modal id="privacy"
-    class="bg-[#D4E7EA] max-w-xs md:max-w-lg font-crash rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-50 left-[1rem] bottom-[1rem] md:left-[1.88rem] md:bottom-[1.88rem]">
+    class="bg-[#D4E7EA] max-w-xs hidden md:max-w-lg font-crash rounded-xl md:rounded-3xl p-4 md:p-8 fixed z-50 left-[1rem] bottom-[1rem] md:left-[1.88rem] md:bottom-[1.88rem]">
     <h3 class="text-base md:text-2xl font-medium">
         We value your Privacy and Consent!
     </h3>
@@ -134,186 +142,204 @@
     <script>
         // Function to show the privacy modal
         function showPrivacyModal() {
-            document.getElementById('privacy').style.display = 'block';
+            document.getElementById('privacy').style.display = 'none';
         }
-    
+
         // Function to handle the user's consent action
         function handleConsent() {
             // Hide the privacy modal
             document.getElementById('privacy').style.display = 'none';
-    
+
             // Update the GTM dataLayer with the user's consent preferences
             window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
+            function gtag() {dataLayer.push(arguments);}
             gtag('consent', 'update', {
                 'ad_user_data': 'granted',
                 'ad_personalization': 'granted',
                 'ad_storage': 'granted',
                 'analytics_storage': 'granted',
             });
-    
+
             // Store the user's consent in localStorage so you don't show the modal again
-            localStorage.setItem('privacyConsent', 'true');
+            sessionStorage.removeItem('dataLayer');
+            sessionStorage.setItem('privacyConsent', 'true');
+            sessionStorage.setItem('dataLayer', JSON.stringify(window.dataLayer));
         }
-    
+
         // Check if the user has already given their consent
-        if (!localStorage.getItem('privacyConsent')) {
+        if (!sessionStorage.getItem('privacyConsent')) {
             // If the user hasn't given their consent yet, show the privacy modal
             showPrivacyModal();
         }
-    
+
         // Add an event listener to the accept button
-        document.getElementById('accept-privacy').addEventListener('click', function() {
+        document.getElementById('accept-privacy').addEventListener('click', function () {
             // When the user clicks the accept button, handle their consent
             handleConsent();
         });
-        document.getElementById('reject-privacy').addEventListener('click', function() {
+        document.getElementById('reject-privacy').addEventListener('click', function () {
             // When the user clicks the accept button, handle their consent
             document.getElementById("privacy").style.display = 'none';
         });
     </script>
 </modal>
 <% if (showContactModal) { %>
-<modal class="Contact-modal opacity-0 hidden fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20 z-20 justify-center items-center">
-    <div class="md:rounded-[1.25rem] md:w-[60%] rounded-r-[0.75rem] overflow-hidden md:pb-16 pb-10 bg-white md:p-16">
-        <div class="">
-            <h3 class="text-2xl md:text-4xl font-medium mb-10">Let's Talk</h3>
+    <modal
+        class="Contact-modal opacity-0 hidden fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20 z-20 justify-center items-center">
+        <div
+            class="md:rounded-[1.25rem] md:w-[60%] rounded-r-[0.75rem] overflow-hidden md:pb-16 pb-10 bg-white md:p-16">
+            <div class="">
+                <h3 class="text-2xl md:text-4xl font-medium mb-10">Let's Talk</h3>
+            </div>
+            <form id="form" class="grid gap-5 grid-cols-2" method="POST" action="/contact/submit">
+                <div>
+                    <label for="name" class="block text-[#969696] text-sm">Name*</label>
+                    <input id="name" required name="contact[name]" type="text"
+                        class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+                </div>
+                <div>
+                    <label for="company" class="block text-[#969696] text-sm">Company Name</label>
+                    <input id="company" name="contact[company]" type="text"
+                        class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+                </div>
+                <div>
+                    <label for="email" class="block text-[#969696] text-sm">Email*</label>
+                    <input id="email" required name="contact[email]" type="email"
+                        class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+                </div>
+                <div>
+                    <label for="mobile" class="block text-[#969696] text-sm">Phone Number*</label>
+                    <input id="mobile" required name="contact[mobile]" type="tel" pattern="[+\d]*"
+                        class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+                </div>
+                <div>
+                    <label for="message" class="block text-[#969696] text-sm">How can we help you?</label>
+                    <textarea id="message" name="contact[message]" type="text"
+                        class="w-full block border-b-[1px] h-32 active:outline-none border-black md:text-lg text-base"></textarea>
+                    <p class="text-red-500 opacity-0">Please enter corret value</p>
+                </div>
+                <div class="flex md:gap-6 gap-2">
+                    <input type="checkbox" id="subscribe" name="contact[subscribe]"
+                        class="border-b-[1px] active:outline-none border-black w-6 h-6" />
+                    <label class="block md:text-base text-sm font-medium align-middle" for="subscribe">Subcribe to our
+                        newsletter for updates</label>
+                </div>
+                <div>
+                    <button data-sitekey="6Ldez3UpAAAAAGX-faudz3vKoV4dI46MDIXFSKpI" data-callback='onSubmit'
+                        data-action='submit'
+                        class="g-recaptcha  rounded-full btn-30 text-center flex justify-center items-center h-12 w-44 font-normal">
+                        <p class="text-container basis-full"><span class="text">Let's Talk</span></p>
+                    </button>
+                </div>
+            </form>
         </div>
-        <form id="form" class="grid gap-5 grid-cols-2" method="POST" action="/contact/submit">
-            <div>
-                <label for="name"  class="block text-[#969696] text-sm">Name*</label>
-                <input id="name" required name="contact[name]" type="text"
-                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
-                <p class="text-red-500 opacity-0">Please enter corret value</p>
-            </div>
-            <div>
-                <label for="company" class="block text-[#969696] text-sm">Company Name</label>
-                <input id="company" name="contact[company]" type="text"
-                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
-                    <p class="text-red-500 opacity-0">Please enter corret value</p>
-            </div>
-            <div>
-                <label for="email" class="block text-[#969696] text-sm">Email*</label>
-                <input id="email" required name="contact[email]" type="email"
-                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
-                    <p class="text-red-500 opacity-0">Please enter corret value</p>
-            </div>
-            <div>
-                <label for="mobile" class="block text-[#969696] text-sm">Phone Number*</label>
-                <input id="mobile" required name="contact[mobile]" type="tel" pattern="[+\d]*"
-                    class="w-full block border-b-[1px] active:outline-none border-black md:text-lg text-base" />
-                    <p class="text-red-500 opacity-0">Please enter corret value</p>
-            </div>
-            <div>
-                <label for="message" class="block text-[#969696] text-sm">How can we help you?</label>
-                <textarea id="message" name="contact[message]" type="text"
-                    class="w-full block border-b-[1px] h-32 active:outline-none border-black md:text-lg text-base"></textarea>
-                    <p class="text-red-500 opacity-0">Please enter corret value</p>
-            </div>
-            <div class="flex md:gap-6 gap-2">
-                <input type="checkbox" id="subscribe" name="contact[subscribe]"
-                    class="border-b-[1px] active:outline-none border-black w-6 h-6" />
-                <label class="block md:text-base text-sm font-medium align-middle" for="subscribe">Subcribe to our newsletter for updates</label>
-            </div>
-            <div>
-                <button data-sitekey="6Ldez3UpAAAAAGX-faudz3vKoV4dI46MDIXFSKpI"
-                data-callback='onSubmit'
-                data-action='submit' class="g-recaptcha  rounded-full btn-30 text-center flex justify-center items-center h-12 w-44 font-normal">
-                    <p class="text-container basis-full"><span class="text">Let's Talk</span></p>
-                </button>
-            </div>
-        </form>
-    </div>
-    <div id="close-contact" class="h-full w-full absolute">
-         
-    </div>
-</modal>
-<script>
-    setTimeout(() => {
-        document.querySelector('.Contact-modal').style.display = 'flex';
-        document.querySelector('.Contact-modal').style.opacity = '1';
-    }, 6000);
-    fetch('/set-contact-modal-shown', { method: 'POST' });
+        <div id="close-contact" class="h-full w-full absolute">
 
-    document.getElementById('close-contact').addEventListener('click', function() {
-        document.querySelector('.Contact-modal').style.display = 'none';
-    });
-</script>
-<% } %>
-<% if (flash.success) { %>
-    <div id="success" class="alert flex justify-center items-center z-50  fixed top-0  left-0 right-0 bottom-0 p-4 text-center">
-        <div class="bg-green-300 flex justify-center items-center w-3/4 md:w-1/4 h-1/4 md:h-1/4">
-            <div class="w-1/2">
-                <%= flash.success %>
-            </div>
         </div>
-    </div> 
+    </modal>
     <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if the success message is already present
-        if (document.getElementById('success')) {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'formSubmissionSuccess'
-            });
-        }
-    });
-        document.getElementById('success').addEventListener('click', function() {
-            this.style.display = 'none';
-        });
         setTimeout(() => {
-            document.getElementById('success').style.display = 'none';
-        }, 3000);
+            document.querySelector('.Contact-modal').style.display = 'flex';
+            document.querySelector('.Contact-modal').style.opacity = '1';
+        }, 6000);
+        fetch('/set-contact-modal-shown', {method: 'POST'});
+
+        document.getElementById('close-contact').addEventListener('click', function () {
+            document.querySelector('.Contact-modal').style.display = 'none';
+        });
     </script>
     <% } %>
-
-        <% if (flash.error) { %>
-            <div class="alert z-50 bg-red-300 fixed top-0 left-0 right-0 p-4 text-center">
-                <%= flash.error %>
+        <% if (flash.success) { %>
+            <div id="success"
+                class="alert flex justify-center items-center z-50  fixed top-0  left-0 right-0 bottom-0 p-4 text-center">
+                <div class="bg-green-300 flex justify-center items-center w-3/4 md:w-1/4 h-1/4 md:h-1/4">
+                    <div class="w-1/2">
+                        <%= flash.success %>
+                    </div>
+                </div>
             </div>
-            <% } %>
-                <script src="https://www.google.com/recaptcha/api.js"></script>
-                <script>
-                    var nav = document.querySelector("#navSide");
-                    function showNav() {
-                        nav.classList.toggle("showNav");
-                    }
+            <script>
 
-                    function onSubmit(token) {
-                        // Validate the form
-                        var form = document.getElementById('form');
-                        console.log(form.checkValidity());
-                        if (form.checkValidity()) {
-                            form.submit()
-                        } else {
-                            alert('Please fill the form corretly!');
-                        }
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Check if the success message is already present
+                    if (document.getElementById('success')) {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            'event': 'formSubmissionSuccess'
+                        });
                     }
-                    function closeTerms() {
-                        document.getElementById('terms').style.display = "none";
-                    }
-                    function openTerms() {
-                        document.getElementById('terms').style.display = "block";
-                    }
-                    document.addEventListener('DOMContentLoaded', function() {
-                            var inputs = document.querySelectorAll('input');
-                            inputs.forEach(function(input) {
-                                input.addEventListener('invalid', function() {
-                                    var errorMessage = this.nextElementSibling;
-                                    errorMessage.style.opacity = '1';
-                                });
-                                input.addEventListener('input', function() {
-                                    var errorMessage = this.nextElementSibling;
-                                    if (errorMessage.tagName != 'LABEL') {
-                                        errorMessage.style.opacity = '0';   
-                                    }
+                });
+                document.getElementById('success').addEventListener('click', function () {
+                    this.style.display = 'none';
+                });
+                setTimeout(() => {
+                    document.getElementById('success').style.display = 'none';
+                }, 3000);
+            </script>
+            <% } %>
+
+                <% if (flash.error) { %>
+                    <div class="alert z-50 bg-red-300 fixed top-0 left-0 right-0 p-4 text-center">
+                        <%= flash.error %>
+                    </div>
+                    <% } %>
+                        <script src="https://www.google.com/recaptcha/api.js"></script>
+                        <script>
+                            var nav = document.querySelector("#navSide");
+                            function showNav() {
+                                nav.classList.toggle("showNav");
+                            }
+
+                            function onSubmit(token) {
+                                // Validate the form
+                                var form = document.getElementById('form');
+                                console.log(form.checkValidity());
+                                if (form.checkValidity()) {
+                                    form.submit()
+                                } else {
+                                    alert('Please fill the form corretly!');
+                                }
+                            }
+                            function closeTerms() {
+                                document.getElementById('terms').style.display = "none";
+                            }
+                            function openTerms() {
+                                document.getElementById('terms').style.display = "block";
+                            }
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var inputs = document.querySelectorAll('input');
+                                inputs.forEach(function (input) {
+                                    input.addEventListener('invalid', function () {
+                                        var errorMessage = this.nextElementSibling;
+                                        errorMessage.style.opacity = '1';
+                                    });
+                                    input.addEventListener('input', function () {
+                                        var errorMessage = this.nextElementSibling;
+                                        if (errorMessage.tagName != 'LABEL') {
+                                            errorMessage.style.opacity = '0';
+                                        }
+                                    });
                                 });
                             });
-                        });
-                </script>
-                <script src="/gsap/gsap.min.js"></script>
-                <script src="/bundle.js"></script>
-                </body>
+                            function pushToDataLayer() {
+                                // Push data to the dataLayer
+                                sessionStorage.removeItem('dataLayer');
+                                window.dataLayer = window.dataLayer || [];
 
-                </html>
+                                // Also store the data in the session
+                                sessionStorage.setItem('dataLayer', JSON.stringify(window.dataLayer));
+                            }
+                            pushToDataLayer()
+                        </script>
+                    
+                        <script src="/gsap/gsap.min.js"></script>
+                        <script src="/bundle.js">
+                  
+                        </script>
+                        </body>
+
+                        </html>

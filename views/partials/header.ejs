@@ -13,10 +13,22 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-TJXFNS4K');</script>
     <!-- End Google Tag Manager -->
-     <!-- Consent Defaults -->
-     <script>
+    <!-- Consent Defaults -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if there's any dataLayer data stored in the session
+            const storedDataLayer = sessionStorage.getItem('dataLayer');
+            if (storedDataLayer) {
+                // Parse the stored data
+                const dataLayerData = JSON.parse(storedDataLayer);
+
+                // Repopulate the dataLayer with the stored data
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push(...dataLayerData);
+            }
+        });
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        function gtag() {dataLayer.push(arguments);}
         gtag('consent', 'default', {
             'ad_user_data': 'denied',
             'ad_personalization': 'denied',
