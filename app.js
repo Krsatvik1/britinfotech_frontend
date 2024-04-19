@@ -125,8 +125,8 @@ app.get('/', async (req, res) => {
       // If not, set it to true for this session
       req.session.contactModalShown = false;
     }
-    res.render('home', { showContactModal: !req.session.contactModalShown, dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
-  } catch (error) {
+    res.render('home', { showContactModal: !req.session.contactMalShown, dataSEO, dataSEOKeywords , dataContact, dataChooseUs, data1, dataBlog, dataCompanies, dataSocial, dataLegal, strapi_base, base_url: base_url+req.path, flash: req.flash() });
+  } catch (error) {od
     console.log(error);
     res.status(500).send('Internal Server Error');
   }
