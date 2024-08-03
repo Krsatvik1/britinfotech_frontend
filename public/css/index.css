@@ -864,10 +864,6 @@ video {
   margin-bottom: 0.25rem;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -2598,10 +2594,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-opacity-20 {
-  --tw-bg-opacity: 0.2;
-}
-
 .bg-\[linear-gradient\(0deg\2c \#00E5BC_5\.0\%\2c \#0B669D_100\%\)\] {
   background-image: linear-gradient(0deg,#00E5BC 5.0%,#0B669D 100%);
 }
@@ -3045,11 +3037,6 @@ video {
 
 .font-dmsans {
   font-family: DM Sans, sans-serif;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .text-4xl {
@@ -4865,10 +4852,6 @@ html.lenis {
     padding-bottom: 0px;
   }
 
-  .md\:pb-16 {
-    padding-bottom: 4rem;
-  }
-
   .md\:pb-8 {
     padding-bottom: 2rem;
   }
@@ -4936,11 +4919,6 @@ html.lenis {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
-  }
-
-  .md\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
   }
 
   .md\:text-\[0\.75rem\] {
