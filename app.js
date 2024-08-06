@@ -23,7 +23,10 @@ async function sendMail(data, type) {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
-    secure: true, // Set secure to false if using port 587
+    secure: false, // Set secure to false if using port 587
+    tls: {
+      minVersion: 'TLSv1.2', // Specify the minimum TLS version
+    },
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS
