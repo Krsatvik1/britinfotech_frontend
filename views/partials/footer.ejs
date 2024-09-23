@@ -184,103 +184,103 @@
     </script>
 </modal>
 
-        <% if (flash.success) { %>
-            <div id="success"
-                class="alert flex justify-center items-center z-50  fixed top-0  left-0 right-0 bottom-0 p-4 text-center">
-                <div class="bg-green-300 flex justify-center items-center w-3/4 md:w-1/4 h-1/4 md:h-1/4">
-                    <div class="w-1/2">
-                        <%= flash.success %>
-                    </div>
-                </div>
+<% if (flash.success || sent) { %>
+    <div id="success"
+        class="alert flex justify-center items-center z-50  fixed top-0  left-0 right-0 bottom-0 p-4 text-center">
+        <div class="bg-green-300 flex justify-center items-center w-3/4 md:w-1/4 h-1/4 md:h-1/4">
+            <div class="w-1/2">
+                Thanks we will get back to you soon!
             </div>
-            <script>
+        </div>
+    </div>
+    <script>
 
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Check if the success message is already present
-                    if (document.getElementById('success')) {
-                        window.dataLayer = window.dataLayer || [];
-                        window.dataLayer.push({
-                            'event': 'formSubmissionSuccess'
-                        });
-                    }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if the success message is already present
+            if (document.getElementById('success')) {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'formSubmissionSuccess'
                 });
-                document.getElementById('success').addEventListener('click', function () {
-                    this.style.display = 'none';
-                });
-                setTimeout(() => {
-                    document.getElementById('success').style.display = 'none';
-                }, 3000);
-            </script>
+            }
+        });
+        document.getElementById('success').addEventListener('click', function () {
+            this.style.display = 'none';
+        });
+        setTimeout(() => {
+            document.getElementById('success').style.display = 'none';
+        }, 3000);
+    </script>
+    <% } %>
+
+        <% if (flash.error) { %>
+            <div class="alert z-50 bg-red-300 fixed top-0 left-0 right-0 p-4 text-center">
+                <%= flash.error %>
+            </div>
             <% } %>
+                <script src="https://www.google.com/recaptcha/api.js"></script>
+                <script>
+                    var nav = document.querySelector("#navSide");
+                    function showNav() {
+                        nav.classList.toggle("showNav");
+                    }
+                    function onSubmit1(token) {
+                        // Validate the form
+                        var form1 = document.getElementById('form1');
+                        console.log(form1.checkValidity());
+                        if (form1.checkValidity()) {
+                            form1.submit()
+                        } else {
+                            alert('Please fill the form corretly!');
+                        }
+                    }
 
-                <% if (flash.error) { %>
-                    <div class="alert z-50 bg-red-300 fixed top-0 left-0 right-0 p-4 text-center">
-                        <%= flash.error %>
-                    </div>
-                    <% } %>
-                        <script src="https://www.google.com/recaptcha/api.js"></script>
-                        <script>
-                            var nav = document.querySelector("#navSide");
-                            function showNav() {
-                                nav.classList.toggle("showNav");
-                            }
-                            function onSubmit1(token) {
-                                // Validate the form
-                                var form1 = document.getElementById('form1');
-                                console.log(form1.checkValidity());
-                                if (form1.checkValidity()) {
-                                    form1.submit()
-                                } else {
-                                    alert('Please fill the form corretly!');
-                                }
-                            }
-
-                            function onSubmit(token) {
-                                // Validate the form
-                                var form = document.getElementById('form');
-                                console.log(form.checkValidity());
-                                if (form.checkValidity()) {
-                                    form.submit()
-                                } else {
-                                    alert('Please fill the form corretly!');
-                                }
-                            }
-                            function closeTerms() {
-                                document.getElementById('terms').style.display = "none";
-                            }
-                            function openTerms() {
-                                document.getElementById('terms').style.display = "block";
-                            }
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var inputs = document.querySelectorAll('input');
-                                inputs.forEach(function (input) {
-                                    input.addEventListener('invalid', function () {
-                                        var errorMessage = this.nextElementSibling;
-                                        errorMessage.style.opacity = '1';
-                                    });
-                                    input.addEventListener('input', function () {
-                                        var errorMessage = this.nextElementSibling;
-                                        if (errorMessage.tagName != 'LABEL') {
-                                            errorMessage.style.opacity = '0';
-                                        }
-                                    });
-                                });
+                    function onSubmit(token) {
+                        // Validate the form
+                        var form = document.getElementById('form');
+                        console.log(form.checkValidity());
+                        if (form.checkValidity()) {
+                            form.submit()
+                        } else {
+                            alert('Please fill the form corretly!');
+                        }
+                    }
+                    function closeTerms() {
+                        document.getElementById('terms').style.display = "none";
+                    }
+                    function openTerms() {
+                        document.getElementById('terms').style.display = "block";
+                    }
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var inputs = document.querySelectorAll('input');
+                        inputs.forEach(function (input) {
+                            input.addEventListener('invalid', function () {
+                                var errorMessage = this.nextElementSibling;
+                                errorMessage.style.opacity = '1';
                             });
-                            function pushToDataLayer() {
-                                // Push data to the dataLayer
-                                sessionStorage.removeItem('dataLayer');
-                                window.dataLayer = window.dataLayer || [];
+                            input.addEventListener('input', function () {
+                                var errorMessage = this.nextElementSibling;
+                                if (errorMessage.tagName != 'LABEL') {
+                                    errorMessage.style.opacity = '0';
+                                }
+                            });
+                        });
+                    });
+                    function pushToDataLayer() {
+                        // Push data to the dataLayer
+                        sessionStorage.removeItem('dataLayer');
+                        window.dataLayer = window.dataLayer || [];
 
-                                // Also store the data in the session
-                                sessionStorage.setItem('dataLayer', JSON.stringify(window.dataLayer));
-                            }
-                            pushToDataLayer()
-                        </script>
-                    
-                        <script src="/gsap/gsap.min.js"></script>
-                        <script src="/bundle.js">
-                  
-                        </script>
-                        </body>
+                        // Also store the data in the session
+                        sessionStorage.setItem('dataLayer', JSON.stringify(window.dataLayer));
+                    }
+                    pushToDataLayer()
+                </script>
 
-                        </html>
+                <script src="/gsap/gsap.min.js"></script>
+                <script src="/bundle.js">
+
+                </script>
+                </body>
+
+                </html>

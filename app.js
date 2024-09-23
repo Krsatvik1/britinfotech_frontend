@@ -290,6 +290,7 @@ app.get("/services/:id", async (req, res) => {
 });
 app.get("/contact", async (req, res) => {
   try {
+    let sent = req.query.sent;
     let dataSEO = await getApiData(
       `contact?populate[SEO][populate][0]=SEO_image`
     );
@@ -307,7 +308,7 @@ app.get("/contact", async (req, res) => {
       dataLegal,
       strapi_base,
       base_url: base_url + req.path,
-      flash: req.flash(),
+      flash: req.flash(), sent
     });
   } catch (error) {
     console.log(error);
@@ -468,7 +469,7 @@ app.post("/submit", async (req, res) => {
             "success",
             "Thanks for submitting! We will reach you soon."
           ); // Set flash message
-          res.redirect("back");
+          res.redirect("/contact?sent=true");
         } catch (error) {
           console.log("Error sending email:", error);
           req.flash("error", "Internal Server Error"); // Set flash message
@@ -564,7 +565,7 @@ app.post("/contact/submit", async (req, res) => {
             "success",
             "Thanks for submitting! We will reach you soon."
           ); // Set flash message
-          res.redirect("back");
+          res.redirect("/contact?sent=true");
         } catch (error) {
           console.log("Error sending email:", error);
           req.flash("error", "Internal Server Error"); // Set flash message
